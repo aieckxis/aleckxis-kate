@@ -1,0 +1,81 @@
+/* root variables for a high-end neon dark system */
+:root {
+    --bg: #030303;
+    --card: #0a0a0a;
+    --pink: #ff4d94;
+    --pink-glow: rgba(255, 77, 148, 0.25);
+    --white: #ffffff;
+    --gray: #a0a0a0;
+}
+
+/* global resets for consistent structural logic */
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+span { color: var(--pink); }
+
+/* professional sticky navigation bar */
+nav { display: flex; justify-content: space-between; padding: 25px 10%; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; background: rgba(0,0,0,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+.logo { font-size: 1.6rem; font-weight: 700; letter-spacing: -1px; }
+.nav-links a { text-decoration: none; color: var(--white); margin-left: 35px; font-size: 0.85rem; transition: 0.3s; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.nav-links a:hover { color: var(--pink); }
+
+/* hero section featuring zoomed neon portrait */
+.hero { display: flex; align-items: center; justify-content: space-between; padding: 180px 10% 120px; min-height: 100vh; }
+.hello-tag { color: var(--pink); letter-spacing: 5px; font-size: 0.9rem; margin-bottom: 20px; text-transform: uppercase; }
+h1 { font-size: 5.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 30px; }
+.description { color: var(--gray); max-width: 580px; font-size: 1.15rem; margin-bottom: 45px; line-height: 1.7; }
+
+/* professional neon circle for profile photo */
+.neon-circle { width: 500px; height: 500px; border-radius: 50%; border: 2px solid var(--pink); display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 0 0 60px var(--pink-glow); }
+.neon-circle img { width: 93%; height: 93%; border-radius: 50%; object-fit: cover; }
+
+/* interactive elements and buttons */
+.btn-primary { background: var(--pink); color: white; padding: 18px 48px; border-radius: 50px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: 0.3s; display: inline-block; }
+.btn-outline { border: 1.5px solid var(--pink); color: var(--pink); padding: 18px 48px; border-radius: 50px; text-decoration: none; font-weight: 600; margin-left: 20px; transition: 0.3s; display: inline-block; }
+.btn-primary:hover { transform: translateY(-4px); box-shadow: 0 0 35px var(--pink); }
+
+/* generic section layout and expertise grid */
+.section { padding: 120px 10%; }
+.about-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+.about-card { background: var(--card); padding: 45px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.03); }
+.about-card.full-width { grid-column: span 2; }
+.about-card h3 { color: var(--pink); margin-bottom: 25px; font-size: 1.3rem; }
+.about-card li { margin-bottom: 12px; color: var(--gray); list-style: none; }
+
+/* professional timeline for internship experience */
+.timeline { display: flex; flex-direction: column; gap: 30px; max-width: 1000px; margin: 0 auto; }
+.t-card { background: var(--card); padding: 40px; border-radius: 25px; border-left: 5px solid #222; }
+.t-card.highlight { border-left-color: var(--pink); background: #0e0e0e; }
+.t-card h3 { margin: 10px 0; font-size: 1.5rem; }
+.exp-list { margin-top: 15px; padding-left: 20px; color: var(--gray); font-size: 0.95rem; }
+.exp-list li { margin-bottom: 8px; }
+
+/* detailed portfolio cards and grid architecture */
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; width: 100%; }
+.project-card { background: var(--card); border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.4s; position: relative; }
+.card-content { padding: 45px; height: 100%; display: flex; flex-direction: column; }
+.project-card:hover { transform: translateY(-12px); border-color: var(--pink); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
+.tag { color: var(--pink); font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; display: block; letter-spacing: 1px; }
+.project-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
+.project-card p { color: var(--gray); font-size: 1rem; margin-bottom: 30px; line-height: 1.6; flex-grow: 1; }
+.card-link { color: var(--pink); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1.5px solid var(--pink); display: inline-block; }
+
+/* contact and footer Credits */
+.dark-bg { background: #080808; }
+.section-title { font-size: 3rem; text-align: center; margin-bottom: 80px; font-weight: 700; }
+.contact-form { width: 100%; max-width: 750px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+.form-group { display: flex; gap: 20px; }
+.contact-form input, .contact-form textarea { background: #0c0c0c; border: 1px solid #222; padding: 22px; border-radius: 18px; color: white; outline: none; width: 100%; font-family: inherit; }
+
+footer { padding: 60px; text-align: center; color: var(--gray); font-size: 0.85rem; border-top: 1px solid #111; }
+
+/* media queries for tablet and mobile responsiveness */
+@media (max-width: 1200px) {
+    .hero { flex-direction: column; text-align: center; padding-top: 180px; }
+    .hero-content { margin-bottom: 80px; }
+    .neon-circle { width: 380px; height: 380px; }
+    .about-grid, .portfolio-grid { grid-template-columns: 1fr; }
+    .about-card.full-width { grid-column: span 1; }
+    .form-group { flex-direction: column; }
+    h1 { font-size: 3.5rem; }
+}
