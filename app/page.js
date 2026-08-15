@@ -48,7 +48,7 @@ export default function Home() {
         </div>
         <div className="hero-visual">
           <div className="neon-circle">
-            <img src="/profile.jpeg" alt="Aleckxis Kate Professional Portrait" />
+            <img src="/profile1.jpeg" alt="Aleckxis Kate Professional Portrait" />
           </div>
         </div>
       </header>
