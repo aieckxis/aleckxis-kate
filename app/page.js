@@ -1,6 +1,5 @@
 import Navbar from './components/Navbar';
 import ContactForm from './components/ContactForm';
-import CodeCard from './components/CodeCard';
 
 const projects = [
   {
@@ -50,21 +49,28 @@ export default function Home() {
 
       <header id="home" className="hero">
         <div className="hero-content">
-          <h4 className="hello-tag">Front-End Engineer</h4>
+          <span className="hero-badge">
+            <span className="hero-badge-dot" />
+            Front-End Engineer
+          </span>
           <h1>
-            I am <span>Aleckxis Kate</span>
+            Hi, I&apos;m <span>Aleckxis Kate</span>
           </h1>
+          <h2 className="hero-subtitle">I build things for the web.</h2>
           <p className="description">
             Computer Engineering graduate specializing in Software Development.
             I transform complex logic into high-performance, user-centered
             interfaces.
           </p>
           <div className="hero-btns">
+            <a href="#projects" className="btn-primary">
+              View My Work →
+            </a>
             <a
               href="https://www.linkedin.com/in/aleckxis/"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary"
+              className="btn-outline"
             >
               LinkedIn Profile
             </a>
@@ -77,13 +83,27 @@ export default function Home() {
               GitHub
             </a>
           </div>
+
+          <div className="tech-stack">
+            <span className="tech-stack-label">Technologies I Work With</span>
+            <div className="tech-stack-icons">
+              <span className="tech-badge">HTML5</span>
+              <span className="tech-badge">CSS3</span>
+              <span className="tech-badge">JavaScript</span>
+              <span className="tech-badge">TypeScript</span>
+              <span className="tech-badge">React</span>
+              <span className="tech-badge">Next.js</span>
+              <span className="tech-badge">Tailwind</span>
+            </div>
+          </div>
         </div>
         <div className="hero-visual">
-          <div className="neon-circle">
-            <img src="/profile1.jpeg" alt="Aleckxis Kate Professional Portrait" />
-          </div>
-          <div className="code-card-float">
-            <CodeCard />
+          <div className="hero-dots" aria-hidden="true" />
+          <div className="portrait-wrap">
+            <div className="portrait-glow" aria-hidden="true" />
+            <div className="portrait-blob">
+              <img src="/profile1.jpeg" alt="Aleckxis Kate Professional Portrait" />
+            </div>
           </div>
         </div>
       </header>

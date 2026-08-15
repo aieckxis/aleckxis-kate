@@ -95,7 +95,77 @@ h1 {
     line-height: 1.7;
 }
 
-/* professional neon circle for profile photo */
+/* hero badge pill */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border: 1px solid rgba(255, 77, 148, 0.35);
+    background: rgba(255, 77, 148, 0.08);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 26px;
+}
+
+.hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--pink);
+    box-shadow: 0 0 8px var(--pink);
+}
+
+.hero-subtitle {
+    font-size: 1.85rem;
+    font-weight: 500;
+    color: var(--gray);
+    margin-bottom: 24px;
+}
+
+/* technologies strip */
+.tech-stack {
+    margin-top: 55px;
+}
+
+.tech-stack-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gray);
+    margin-bottom: 18px;
+}
+
+.tech-stack-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tech-badge {
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--white);
+    transition: 0.3s;
+}
+
+.tech-badge:hover {
+    border-color: var(--pink);
+    color: var(--pink);
+    transform: translateY(-3px);
+}
+
+/* hero portrait area */
 .hero-visual {
     position: relative;
     display: flex;
@@ -103,142 +173,68 @@ h1 {
     justify-content: center;
 }
 
-.neon-circle {
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    border: 2px solid var(--pink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    box-shadow: 0 0 60px var(--pink-glow);
-}
-
-.neon-circle img {
-    width: 93%;
-    height: 93%;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* floating glassmorphism code-snippet card beside the portrait */
-.code-card-float {
+.hero-dots {
     position: absolute;
-    bottom: 10px;
-    left: -30px;
-    z-index: 3;
-    animation: code-card-bob 6s ease-in-out infinite;
+    top: -30px;
+    right: -10px;
+    width: 150px;
+    height: 150px;
+    background-image: radial-gradient(var(--pink) 1.5px, transparent 1.5px);
+    background-size: 16px 16px;
+    opacity: 0.35;
+    z-index: 0;
 }
 
-@keyframes code-card-bob {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-14px);
-    }
+.portrait-wrap {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    z-index: 1;
 }
 
-.code-card {
-    width: 300px;
-    background: rgba(10, 10, 10, 0.55);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 45px var(--pink-glow);
+.portrait-glow {
+    position: absolute;
+    inset: -50px;
+    background: radial-gradient(circle, var(--pink-glow), transparent 70%);
+    filter: blur(45px);
+    z-index: 0;
+}
+
+.portrait-blob {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 61% 39% 55% 45% / 55% 45% 55% 45%;
     overflow: hidden;
-    transform: rotate(-5deg);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 2px solid rgba(255, 77, 148, 0.5);
+    box-shadow: 0 0 60px var(--pink-glow);
+    transition: border-radius 0.6s ease;
 }
 
-.code-card:hover {
-    transform: rotate(0deg) scale(1.03);
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 60px var(--pink-glow);
+.portrait-blob:hover {
+    border-radius: 45% 55% 39% 61% / 45% 55% 45% 55%;
 }
 
-.code-card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.code-card-dots {
-    display: flex;
-    gap: 6px;
-}
-
-.code-card-dots .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+.portrait-blob img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
-.dot-red {
-    background: #ff5f56;
-}
-
-.dot-yellow {
-    background: #ffbd2e;
-}
-
-.dot-green {
-    background: #27c93f;
-}
-
-.code-card-filename {
-    margin-left: auto;
-    font-family: ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
-    font-size: 0.7rem;
-    color: var(--gray);
-    letter-spacing: 0.5px;
-}
-
-.code-card-body {
-    margin: 0;
-    padding: 20px;
-    font-family: ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
-    font-size: 0.78rem;
-    line-height: 1.7;
-    white-space: pre;
-    overflow-x: auto;
-    color: #e2e8f0;
-}
-
-.tok-kw {
-    color: var(--pink);
-    font-weight: 600;
-}
-
-.tok-var {
-    color: #7dd3fc;
-}
-
-.tok-prop {
-    color: #e2e8f0;
-}
-
-.tok-str {
-    color: #fbbf24;
-}
-
-.tok-punct {
-    color: var(--gray);
-}
-
 /* interactive elements and buttons */
+.hero-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+}
+
 .btn-primary {
     background: var(--pink);
     color: white;
-    padding: 18px 48px;
+    padding: 18px 40px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
@@ -251,11 +247,10 @@ h1 {
 .btn-outline {
     border: 1.5px solid var(--pink);
     color: var(--pink);
-    padding: 18px 48px;
+    padding: 18px 40px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    margin-left: 20px;
     transition: 0.3s;
     display: inline-block;
 }
@@ -263,6 +258,11 @@ h1 {
 .btn-primary:hover {
     transform: translateY(-4px);
     box-shadow: 0 0 35px var(--pink);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 77, 148, 0.1);
+    transform: translateY(-4px);
 }
 
 /* generic section layout and expertise grid */
@@ -597,9 +597,21 @@ footer {
         flex-direction: column;
     }
 
-    .neon-circle {
-        width: 380px;
-        height: 380px;
+    .hero-btns {
+        justify-content: center;
+    }
+
+    .tech-stack-icons {
+        justify-content: center;
+    }
+
+    .portrait-wrap {
+        width: 340px;
+        height: 340px;
+    }
+
+    .hero-dots {
+        display: none;
     }
 
     .about-grid,
@@ -617,20 +629,6 @@ footer {
 
     h1 {
         font-size: 3.5rem;
-    }
-
-    .code-card-float {
-        position: static;
-        margin-top: -40px;
-        animation: none;
-    }
-
-    .code-card {
-        transform: rotate(-3deg);
-    }
-
-    .code-card:hover {
-        transform: rotate(0deg);
     }
 }
 
@@ -763,13 +761,17 @@ footer {
         min-height: auto;
     }
 
-    .neon-circle {
-        width: 280px;
-        height: 280px;
+    .portrait-wrap {
+        width: 250px;
+        height: 250px;
     }
 
     h1 {
         font-size: 2.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
     }
 
     .description {
@@ -783,8 +785,8 @@ footer {
         justify-content: center;
     }
 
-    .btn-outline {
-        margin-left: 0;
+    .tech-stack {
+        margin-top: 40px;
     }
 
     .section {
@@ -852,22 +854,9 @@ footer {
         letter-spacing: 3px;
     }
 
-    .neon-circle {
-        width: 220px;
-        height: 220px;
-    }
-
-    .code-card-float {
-        margin-top: -30px;
-    }
-
-    .code-card {
-        width: min(260px, 82vw);
-    }
-
-    .code-card-body {
-        font-size: 0.7rem;
-        padding: 16px;
+    .portrait-wrap {
+        width: 200px;
+        height: 200px;
     }
 
     .btn-primary,
