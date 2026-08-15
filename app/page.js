@@ -1,21 +1,10 @@
+import Navbar from './components/Navbar';
 import ContactForm from './components/ContactForm';
 
 export default function Home() {
   return (
     <>
-      <nav>
-        <div className="logo">
-          Aleckxis<span>Kate</span>
-        </div>
-        <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#education">Education</a>
-          <a href="#projects">Portfolio</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
+      <Navbar />
 
       <header id="home" className="hero">
         <div className="hero-content">
