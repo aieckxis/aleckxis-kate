@@ -1,6 +1,47 @@
 import Navbar from './components/Navbar';
 import ContactForm from './components/ContactForm';
 
+const projects = [
+  {
+    tag: "Next.js 15 • Supabase • TypeScript",
+    title: "Clayden's Food Hub",
+    description:
+      'Professional catering platform featuring dynamic menu rendering and automated booking flows.',
+    url: 'https://v0-claydens-food-hub-website.vercel.app',
+    linkLabel: 'View Live →',
+  },
+  {
+    tag: 'TypeScript • IoT Dashboard',
+    title: 'GrowUp Thesis Dashboard',
+    description:
+      'Front-end lead for a smart farming system. engineered the interface for real-time environment monitoring.',
+    url: 'https://grow-up-front-end.vercel.app/dashboard',
+    linkLabel: 'Live Dashboard →',
+  },
+  {
+    tag: 'Next.js • Resend • Vercel',
+    title: 'Personal Portfolio',
+    description:
+      'This site — a full-stack portfolio built with Next.js App Router, featuring a live contact form backed by a serverless email API.',
+    url: 'https://aleckxis-kate.vercel.app',
+    linkLabel: 'View Live →',
+  },
+  {
+    tag: 'HTML • CSS • JavaScript',
+    title: "Blingzy's Restobar",
+    description:
+      'Restaurant and bar website with an interactive menu, category filtering, image gallery, and booking-friendly contact section.',
+    url: 'https://blingzys-restobar.vercel.app/',
+    linkLabel: 'View Live →',
+  },
+];
+
+// Free, key-less live-screenshot service. First load per URL can take a
+// few seconds while it renders; subsequent loads are served from cache.
+function thumbnailUrl(url, width = 900) {
+  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${width}`;
+}
+
 export default function Home() {
   return (
     <>
@@ -147,83 +188,39 @@ export default function Home() {
           Detailed <span>Portfolio</span>
         </h2>
         <div className="portfolio-grid">
-          <div className="project-card">
-            <div className="card-content">
-              <span className="tag">Next.js 15 • Supabase • TypeScript</span>
-              <h3>Clayden&apos;s Food Hub</h3>
-              <p>
-                Professional catering platform featuring dynamic menu
-                rendering and automated booking flows.
-              </p>
+          {projects.map((project) => (
+            <div className="project-card" key={project.url}>
               <a
-                href="https://v0-claydens-food-hub-website.vercel.app"
-                className="card-link"
+                href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="project-thumb"
+                aria-label={`Open live preview of ${project.title}`}
               >
-                View Live →
+                <img
+                  src={thumbnailUrl(project.url)}
+                  alt={`Screenshot preview of ${project.title}`}
+                  loading="lazy"
+                />
+                <div className="project-thumb-overlay">
+                  <span>Visit Live Site →</span>
+                </div>
               </a>
+              <div className="card-content">
+                <span className="tag">{project.tag}</span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <a
+                  href={project.url}
+                  className="card-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {project.linkLabel}
+                </a>
+              </div>
             </div>
-          </div>
-
-          <div className="project-card">
-            <div className="card-content">
-              <span className="tag">TypeScript • IoT Dashboard</span>
-              <h3>GrowUp Thesis Dashboard</h3>
-              <p>
-                Front-end lead for a smart farming system. engineered the
-                interface for real-time environment monitoring.
-              </p>
-              <a
-                href="https://grow-up-front-end.vercel.app/dashboard"
-                className="card-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Live Dashboard →
-              </a>
-            </div>
-          </div>
-
-          <div className="project-card">
-            <div className="card-content">
-              <span className="tag">Next.js • Resend • Vercel</span>
-              <h3>Personal Portfolio</h3>
-              <p>
-                This site — a full-stack portfolio built with Next.js App
-                Router, featuring a live contact form backed by a serverless
-                email API.
-              </p>
-              <a
-                href="https://aleckxis-kate.vercel.app"
-                className="card-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View Live →
-              </a>
-            </div>
-          </div>
-
-          <div className="project-card">
-            <div className="card-content">
-              <span className="tag">HTML • CSS • JavaScript</span>
-              <h3>Blingzy&apos;s Restobar</h3>
-              <p>
-                Restaurant and bar website with an interactive menu, category
-                filtering, image gallery, and booking-friendly contact
-                section.
-              </p>
-              <a
-                href="https://blingzys-restobar.vercel.app/"
-                className="card-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View Live →
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
