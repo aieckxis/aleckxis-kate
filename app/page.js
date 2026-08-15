@@ -11,6 +11,7 @@ export default function Home() {
           <a href="#home">Home</a>
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
           <a href="#projects">Portfolio</a>
           <a href="#contact">Contact</a>
         </div>
@@ -48,7 +49,7 @@ export default function Home() {
         </div>
         <div className="hero-visual">
           <div className="neon-circle">
-            <img src="/profile1.jpeg" alt="Aleckxis Kate Professional Portrait" />
+            <img src="/profile.jpg" alt="Aleckxis Kate Professional Portrait" />
           </div>
         </div>
       </header>
@@ -131,6 +132,22 @@ export default function Home() {
             <p>
               Processed student applications, maintained organized databases,
               and handled financial documents.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" className="section dark-bg">
+        <h2 className="section-title">
+          Education <span>Background</span>
+        </h2>
+        <div className="timeline">
+          <div className="t-card highlight">
+            <span className="tag">2022 – 2026</span>
+            <h3>Polytechnic University of the Philippines</h3>
+            <p>
+              Bachelor of Science in Computer Engineering, specialized in
+              System Development.
             </p>
           </div>
         </div>
