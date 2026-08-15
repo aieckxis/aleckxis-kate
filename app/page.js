@@ -49,7 +49,7 @@ export default function Home() {
         </div>
         <div className="hero-visual">
           <div className="neon-circle">
-            <img src="/profile.jpg" alt="Aleckxis Kate Professional Portrait" />
+            <img src="/profile1.jpeg" alt="Aleckxis Kate Professional Portrait" />
           </div>
         </div>
       </header>
@@ -240,23 +240,48 @@ export default function Home() {
 
       <section id="advocacy" className="section dark-bg">
         <h2 className="section-title">
-          Impact &amp; <span>Leadership</span>
+          Honors &amp; <span>Leadership</span>
         </h2>
         <div className="container">
           <div className="about-grid">
-            <div className="about-card">
-              <h3>Animal Welfare</h3>
-              <p>
-                Treasurer for Youth for Animals (PUP Main). Managed financial
-                funds and supported animal welfare initiatives.
-              </p>
+            <div className="about-card full-width">
+              <h3>Academic Honors &amp; Scholarships</h3>
+              <ul className="exp-list">
+                <li>
+                  PUP President&apos;s Lister — 1st Semester, A.Y. 2022 – 2023
+                </li>
+                <li>
+                  PUP Deans&apos;s Lister — 2nd Semester, A.Y. 2025 – 2026
+                </li>
+                <li>
+                  Iskolar ni Gob (SAP Scholarship) — Provincial Government of
+                  Rizal (2022 – 2026)
+                </li>
+              </ul>
             </div>
-            <div className="about-card">
-              <h3>COC Cheering Squad</h3>
-              <p>
-                Served as a flyer; developed extreme discipline, teamwork,
-                and confidence under pressure.
-              </p>
+            <div className="about-card full-width">
+              <h3>Organizations &amp; Leadership Roles</h3>
+              <ul className="exp-list">
+                <li>
+                  Member, Humane Education Committee — Youth for Animals, PUP
+                  Main (2023 – 2024), (2025 – 2026)
+                </li>
+                <li>
+                  Treasurer — Youth for Animals, PUP Main (2024 – 2025)
+                </li>
+                <li>
+                  Member, Adoption and Fostering Committee — Sintang Pusa, PUP
+                  Main (2024 – 2026)
+                </li>
+                <li>
+                  Flyer — PUP College of Communication (COC) Cheering Squad
+                  (2025 – 2026)
+                </li>
+                <li>
+                  Volunteer — The Philippine Animal Welfare Society (PAWS)
+                  (2026 – Present)
+                </li>
+              </ul>
             </div>
           </div>
         </div>
