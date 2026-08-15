@@ -23,7 +23,7 @@ export default function Home() {
             I am <span>Aleckxis Kate</span>
           </h1>
           <p className="description">
-            Computer Engineering student specializing in Software Development.
+            Computer Engineering graduate specializing in Software Development.
             I transform complex logic into high-performance, user-centered
             interfaces.
           </p>
@@ -48,7 +48,7 @@ export default function Home() {
         </div>
         <div className="hero-visual">
           <div className="neon-circle">
-            <img src="/profile.jpg" alt="Aleckxis Kate Professional Portrait" />
+            <img src="/profile.jpeg" alt="Aleckxis Kate Professional Portrait" />
           </div>
         </div>
       </header>
@@ -181,6 +181,26 @@ export default function Home() {
 
           <div className="project-card">
             <div className="card-content">
+              <span className="tag">Next.js • Resend • Vercel</span>
+              <h3>Personal Portfolio</h3>
+              <p>
+                This site — a full-stack portfolio built with Next.js App
+                Router, featuring a live contact form backed by a serverless
+                email API.
+              </p>
+              <a
+                href="https://aleckxis-kate.vercel.app"
+                className="card-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Live →
+              </a>
+            </div>
+          </div>
+
+          <div className="project-card">
+            <div className="card-content">
               <span className="tag">HTML • CSS • JavaScript</span>
               <h3>Blingzy&apos;s Restobar</h3>
               <p>
@@ -233,7 +253,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <p>© 2026 Aleckxis Kate | Front-End Engineer &amp; Computer Engineering Student</p>
+        <p>© 2026 Aleckxis Kate | Front-End Engineer &amp; Computer Engineering Graduate</p>
       </footer>
     </>
   );
