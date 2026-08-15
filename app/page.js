@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import ContactForm from './components/ContactForm';
+import CodeCard from './components/CodeCard';
 
 const projects = [
   {
@@ -80,6 +81,9 @@ export default function Home() {
         <div className="hero-visual">
           <div className="neon-circle">
             <img src="/profile1.jpeg" alt="Aleckxis Kate Professional Portrait" />
+          </div>
+          <div className="code-card-float">
+            <CodeCard />
           </div>
         </div>
       </header>

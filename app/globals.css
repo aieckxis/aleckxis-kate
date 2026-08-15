@@ -96,6 +96,13 @@ h1 {
 }
 
 /* professional neon circle for profile photo */
+.hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .neon-circle {
     width: 500px;
     height: 500px;
@@ -113,6 +120,118 @@ h1 {
     height: 93%;
     border-radius: 50%;
     object-fit: cover;
+}
+
+/* floating glassmorphism code-snippet card beside the portrait */
+.code-card-float {
+    position: absolute;
+    bottom: 10px;
+    left: -30px;
+    z-index: 3;
+    animation: code-card-bob 6s ease-in-out infinite;
+}
+
+@keyframes code-card-bob {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+.code-card {
+    width: 300px;
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 45px var(--pink-glow);
+    overflow: hidden;
+    transform: rotate(-5deg);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.code-card:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 60px var(--pink-glow);
+}
+
+.code-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.code-card-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.code-card-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+}
+
+.dot-red {
+    background: #ff5f56;
+}
+
+.dot-yellow {
+    background: #ffbd2e;
+}
+
+.dot-green {
+    background: #27c93f;
+}
+
+.code-card-filename {
+    margin-left: auto;
+    font-family: ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    color: var(--gray);
+    letter-spacing: 0.5px;
+}
+
+.code-card-body {
+    margin: 0;
+    padding: 20px;
+    font-family: ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    white-space: pre;
+    overflow-x: auto;
+    color: #e2e8f0;
+}
+
+.tok-kw {
+    color: var(--pink);
+    font-weight: 600;
+}
+
+.tok-var {
+    color: #7dd3fc;
+}
+
+.tok-prop {
+    color: #e2e8f0;
+}
+
+.tok-str {
+    color: #fbbf24;
+}
+
+.tok-punct {
+    color: var(--gray);
 }
 
 /* interactive elements and buttons */
@@ -289,13 +408,100 @@ h1 {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.project-thumb img {
+.project-thumb-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.project-thumb-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top;
     display: block;
-    transition: transform 0.5s ease, filter 0.5s ease;
+    transition: transform 0.5s ease, filter 0.5s ease, opacity 0.4s ease;
+}
+
+.project-thumb-wrap img.is-loading {
+    opacity: 0;
+}
+
+.project-thumb-wrap img.is-ready {
+    opacity: 1;
+}
+
+/* skeleton shown while mshots is still generating the real screenshot */
+.thumb-skeleton {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: linear-gradient(120deg, #0a0a0a 0%, #111111 40%, #0a0a0a 80%);
+    background-size: 200% 100%;
+    animation: thumb-shimmer 2.2s ease-in-out infinite;
+    color: var(--gray);
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.thumb-skeleton-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--pink);
+    box-shadow: 0 0 18px var(--pink-glow);
+    animation: thumb-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes thumb-shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: -200% 50%;
+    }
+}
+
+@keyframes thumb-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 0.6;
+    }
+}
+
+.thumb-retry-btn {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(3, 3, 3, 0.85);
+    border: 1.5px solid var(--pink);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 2;
+    transition: 0.3s;
+}
+
+.thumb-retry-btn:hover {
+    background: var(--pink);
 }
 
 .project-card:hover .project-thumb img {
@@ -387,6 +593,10 @@ footer {
         margin-bottom: 80px;
     }
 
+    .hero-visual {
+        flex-direction: column;
+    }
+
     .neon-circle {
         width: 380px;
         height: 380px;
@@ -407,6 +617,20 @@ footer {
 
     h1 {
         font-size: 3.5rem;
+    }
+
+    .code-card-float {
+        position: static;
+        margin-top: -40px;
+        animation: none;
+    }
+
+    .code-card {
+        transform: rotate(-3deg);
+    }
+
+    .code-card:hover {
+        transform: rotate(0deg);
     }
 }
 
@@ -631,6 +855,19 @@ footer {
     .neon-circle {
         width: 220px;
         height: 220px;
+    }
+
+    .code-card-float {
+        margin-top: -30px;
+    }
+
+    .code-card {
+        width: min(260px, 82vw);
+    }
+
+    .code-card-body {
+        font-size: 0.7rem;
+        padding: 16px;
     }
 
     .btn-primary,
