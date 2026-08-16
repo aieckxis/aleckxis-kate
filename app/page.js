@@ -98,7 +98,6 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-visual">
-          <div className="hero-dots" aria-hidden="true" />
           <div className="portrait-wrap">
             <div className="portrait-glow" aria-hidden="true" />
             <div className="portrait-blob">
