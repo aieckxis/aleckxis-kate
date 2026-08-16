@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Navbar from './components/Navbar';
 import ContactForm from './components/ContactForm';
 
@@ -36,16 +39,74 @@ const projects = [
   },
 ];
 
-// Free, key-less live-screenshot service. A wide viewport width (like a
-// real desktop browser window) captures the full "above the fold" layout
-// at a natural scale — a narrower width makes hero text look zoomed-in.
-// The height matches our thumbnail's aspect ratio (16:10) so mshots
-// captures exactly the visible viewport, not a cropped/scaled full page.
-// First load per URL can take a few seconds while it renders; subsequent
-// loads are served from cache.
-function thumbnailUrl(url, width = 1600) {
+// Live-screenshot service (thum.io, free/key-less). The `wait/5` segment
+// tells thum.io to hold for ~5s before capturing so JS-heavy Next.js
+// pages finish rendering their hero/nav before the snapshot is taken —
+// this is what was causing the blank/"zoomed in" looking thumbnails
+// before (the old service grabbed the page mid-render).
+// `crop` locks the output to our 16:10 aspect ratio directly from the
+// service, and object-position:top in CSS keeps the visible crop
+// anchored to the top of the page (nav + hero), matching what a visitor
+// actually sees first when they open the site themselves.
+function thumbnailUrl(url, width = 1200) {
   const height = Math.round(width / 1.6); // 16:10, matches .project-thumb
-  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${width}&h=${height}`;
+  return `https://image.thum.io/get/width/${width}/crop/${height}/noanimate/wait/5/${url}`;
+}
+
+function ProjectThumbnail({ project }) {
+  const [status, setStatus] = useState('loading'); // 'loading' | 'ready' | 'error'
+  const [attempt, setAttempt] = useState(0);
+
+  const src = `${thumbnailUrl(project.url)}${attempt ? `&retry=${attempt}` : ''}`;
+
+  return (
+    <a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="project-thumb"
+      aria-label={`Open live preview of ${project.title}`}
+    >
+      <div className="project-thumb-wrap">
+        {status !== 'ready' && (
+          <div className="thumb-skeleton">
+            <div className="thumb-skeleton-dot" />
+            {status === 'loading' && <span>Loading live preview…</span>}
+            {status === 'error' && <span>Preview failed to load</span>}
+          </div>
+        )}
+
+        <img
+          key={attempt}
+          src={src}
+          alt={`Screenshot preview of ${project.title}`}
+          loading="lazy"
+          className={status === 'ready' ? 'is-ready' : 'is-loading'}
+          onLoad={() => setStatus('ready')}
+          onError={() => setStatus('error')}
+        />
+
+        {status === 'error' && (
+          <button
+            type="button"
+            className="thumb-retry-btn"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setStatus('loading');
+              setAttempt((n) => n + 1);
+            }}
+          >
+            Retry
+          </button>
+        )}
+      </div>
+
+      <div className="project-thumb-overlay">
+        <span>Visit Live Site →</span>
+      </div>
+    </a>
+  );
 }
 
 export default function Home() {
@@ -219,22 +280,7 @@ export default function Home() {
         <div className="portfolio-grid">
           {projects.map((project) => (
             <div className="project-card" key={project.url}>
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-thumb"
-                aria-label={`Open live preview of ${project.title}`}
-              >
-                <img
-                  src={thumbnailUrl(project.url)}
-                  alt={`Screenshot preview of ${project.title}`}
-                  loading="lazy"
-                />
-                <div className="project-thumb-overlay">
-                  <span>Visit Live Site →</span>
-                </div>
-              </a>
+              <ProjectThumbnail project={project} />
               <div className="card-content">
                 <span className="tag">{project.tag}</span>
                 <h3>{project.title}</h3>

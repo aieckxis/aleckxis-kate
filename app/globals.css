@@ -414,7 +414,7 @@ h1 {
     opacity: 1;
 }
 
-/* skeleton shown while mshots is still generating the real screenshot */
+/* skeleton shown while the screenshot service is still generating the real screenshot */
 .thumb-skeleton {
     position: absolute;
     inset: 0;
@@ -487,7 +487,10 @@ h1 {
     background: var(--pink);
 }
 
-.project-card:hover .project-thumb img {
+/* NOTE: matches the .project-thumb-wrap img structure rendered by the
+   ProjectThumbnail component (previously targeted ".project-thumb img"
+   directly, which no longer matched once the wrap + skeleton were added) */
+.project-card:hover .project-thumb-wrap img {
     filter: brightness(0.55);
 }
 
