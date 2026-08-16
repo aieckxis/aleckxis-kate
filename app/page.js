@@ -397,11 +397,11 @@ export default function Home() {
             <div className="cta-col cta-right">
               <h3>Direct Contact</h3>
               <div className="contact-details">
-                <a href="mailto:aleckxis@example.com" className="direct-link">
-                  <span className="icon">✉</span> aleckxis@example.com
+                <a href="mailto:aleckxiskate@gmail.com" className="direct-link">
+                  <span className="icon">✉</span> aleckxiskate@gmail.com
                 </a>
                 <a href="tel:+639000000000" className="direct-link">
-                  <span className="icon">📞</span> +63 (900) 000-0000
+                  <span className="icon">📞</span> +63 (916) 217-7032
                 </a>
               </div>
               <div className="social-links-wrap">
