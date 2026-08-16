@@ -166,7 +166,7 @@ h1 {
     transform: translateY(-3px);
 }
 
-/* hero portrait area */
+/* hero portrait area — enlarged per request */
 .hero-visual {
     position: relative;
     display: flex;
@@ -176,8 +176,8 @@ h1 {
 
 .portrait-wrap {
     position: relative;
-    width: 320px;
-    height: 320px;
+    width: 440px;
+    height: 440px;
     z-index: 1;
 }
 
@@ -564,6 +564,159 @@ footer {
     border-top: 1px solid #111;
 }
 
+/* ============================================================
+   HIGH-CONTRAST "HIRE ME / LET'S WORK TOGETHER" CTA BANNER
+   Restyled to match the site's pink-neon dark theme (was indigo/gray).
+   ============================================================ */
+.cta-banner-section {
+    padding: 60px 10%;
+    background-color: var(--bg);
+}
+
+.cta-banner-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr 1fr;
+    gap: 32px;
+    background: var(--card);
+    border: 1px solid rgba(255, 77, 148, 0.25);
+    border-radius: 24px;
+    padding: 44px;
+    box-shadow: 0 0 60px rgba(255, 77, 148, 0.08);
+}
+
+.cta-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Left Column */
+.cta-left .sub-tag {
+    color: var(--pink);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.cta-left h2 {
+    color: var(--white);
+    font-size: 1.9rem;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.cta-left p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 24px;
+}
+
+/* Middle + Right column headings */
+.cta-mid h3,
+.cta-right h3 {
+    color: var(--white);
+    font-size: 1.15rem;
+    margin-bottom: 18px;
+}
+
+/* Middle Column: Checklist */
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--gray);
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+.check-icon {
+    color: var(--pink);
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--pink-glow);
+}
+
+/* Right Column: Direct Info */
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 26px;
+}
+
+.direct-link {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.92rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s ease;
+}
+
+.direct-link:hover {
+    color: var(--pink);
+}
+
+.social-label {
+    display: block;
+    color: var(--gray);
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.social-badges {
+    display: flex;
+    gap: 10px;
+}
+
+.social-badge {
+    background: #0c0c0c;
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.social-badge:hover {
+    background: rgba(255, 77, 148, 0.1);
+    border-color: var(--pink);
+    color: var(--pink);
+    transform: translateY(-2px);
+}
+
+/* Responsive view for tablets and mobile */
+@media (max-width: 900px) {
+    .cta-banner-grid {
+        grid-template-columns: 1fr;
+        padding: 28px;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cta-banner-section {
+        padding: 50px 6%;
+    }
+}
+
 /* media queries for tablet and mobile responsiveness */
 @media (max-width: 1200px) {
     .hero {
@@ -589,8 +742,8 @@ footer {
     }
 
     .portrait-wrap {
-        width: 280px;
-        height: 280px;
+        width: 340px;
+        height: 340px;
     }
 
     .about-grid,
@@ -741,8 +894,8 @@ footer {
     }
 
     .portrait-wrap {
-        width: 210px;
-        height: 210px;
+        width: 250px;
+        height: 250px;
     }
 
     h1 {
@@ -835,8 +988,8 @@ footer {
     }
 
     .portrait-wrap {
-        width: 170px;
-        height: 170px;
+        width: 190px;
+        height: 190px;
     }
 
     .btn-primary,

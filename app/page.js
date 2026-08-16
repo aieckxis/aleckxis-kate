@@ -41,13 +41,10 @@ const projects = [
 
 // Live-screenshot service (thum.io, free/key-less). The `wait/5` segment
 // tells thum.io to hold for ~5s before capturing so JS-heavy Next.js
-// pages finish rendering their hero/nav before the snapshot is taken —
-// this is what was causing the blank/"zoomed in" looking thumbnails
-// before (the old service grabbed the page mid-render).
+// pages finish rendering their hero/nav before the snapshot is taken.
 // `crop` locks the output to our 16:10 aspect ratio directly from the
 // service, and object-position:top in CSS keeps the visible crop
-// anchored to the top of the page (nav + hero), matching what a visitor
-// actually sees first when they open the site themselves.
+// anchored to the top of the page (nav + hero).
 function thumbnailUrl(url, width = 1200) {
   const height = Math.round(width / 1.6); // 16:10, matches .project-thumb
   return `https://image.thum.io/get/width/${width}/crop/${height}/noanimate/wait/5/${url}`;
@@ -125,7 +122,7 @@ export default function Home() {
           </h1>
           <h2 className="hero-subtitle">I build things for the web.</h2>
           <p className="description">
-            Computer Engineering graduate specializing in Software Development.
+            Computer Engineering graduate specializing in System Development.
             I transform complex logic into high-performance, user-centered
             interfaces.
           </p>
@@ -355,8 +352,87 @@ export default function Home() {
         <ContactForm />
       </section>
 
+      {/* High-contrast Hire Me / Let's Work Together banner, right before the footer */}
+      <section className="cta-banner-section">
+        <div className="container">
+          <div className="cta-banner-grid">
+
+            {/* Left Column: Call to Action */}
+            <div className="cta-col cta-left">
+              <span className="sub-tag">LET&apos;S WORK TOGETHER</span>
+              <h2>Have a project in mind?</h2>
+              <p>
+                I&apos;m always open to discussing new opportunities,
+                full-time engineering roles, and innovative web projects.
+              </p>
+              <a href="#contact" className="btn-primary">
+                Get in Touch ↗
+              </a>
+            </div>
+
+            {/* Middle Column: What I Bring Checklist */}
+            <div className="cta-col cta-mid">
+              <h3>What I Bring to the Table</h3>
+              <ul className="checklist">
+                <li>
+                  <span className="check-icon">✓</span>
+                  <span>Full-time Front-End / React &amp; Next.js Roles</span>
+                </li>
+                <li>
+                  <span className="check-icon">✓</span>
+                  <span>Fast UI/UX Component Prototyping</span>
+                </li>
+                <li>
+                  <span className="check-icon">✓</span>
+                  <span>Responsive, Accessible &amp; High-Performance Builds</span>
+                </li>
+                <li>
+                  <span className="check-icon">✓</span>
+                  <span>Clean Git Workflow &amp; Cross-Functional Teamwork</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Right Column: Direct Contact & Socials */}
+            <div className="cta-col cta-right">
+              <h3>Direct Contact</h3>
+              <div className="contact-details">
+                <a href="mailto:aleckxis@example.com" className="direct-link">
+                  <span className="icon">✉</span> aleckxis@example.com
+                </a>
+                <a href="tel:+639000000000" className="direct-link">
+                  <span className="icon">📞</span> +63 (900) 000-0000
+                </a>
+              </div>
+              <div className="social-links-wrap">
+                <span className="social-label">Follow / Connect</span>
+                <div className="social-badges">
+                  <a
+                    href="https://github.com/aieckxis"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-badge"
+                  >
+                    GitHub ↗
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/aleckxis/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-badge"
+                  >
+                    LinkedIn ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       <footer>
-        <p>© 2026 Aleckxis Kate | Front-End Engineer &amp; Computer Engineering Graduate</p>
+        <p>© 2026 Aleckxis Kate V. Bernabe</p>
       </footer>
     </>
   );
