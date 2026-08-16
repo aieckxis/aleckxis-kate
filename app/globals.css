@@ -920,7 +920,7 @@ footer {
    MOBILE HAMBURGER DRAWER + RESPONSIVE FIXES
    ============================================================ */
 
-/* ---------- Hamburger button (hidden by default sa desktop) ---------- */
+/* ---------- Hamburger button (hidden by default on desktop) ---------- */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -958,7 +958,7 @@ footer {
     background: var(--pink);
 }
 
-/* ---------- Backdrop sa likod ng drawer ---------- */
+/* ---------- Backdrop behind the drawer ---------- */
 .nav-backdrop {
     position: fixed;
     inset: 0;
@@ -1037,7 +1037,7 @@ footer {
 }
 
 /* ============================================================
-   BREAKPOINT: kung saan hindi na kasya ang nav-links (<= 900px)
+   BREAKPOINT: where nav-links no longer fit (<= 900px)
    ============================================================ */
 @media (max-width: 900px) {
     nav {
@@ -1139,7 +1139,7 @@ footer {
 }
 
 /* ============================================================
-   BREAKPOINT: maliliit na phone (<= 480px)
+   BREAKPOINT: small phones (<= 480px)
    ============================================================ */
 @media (max-width: 480px) {
     nav {

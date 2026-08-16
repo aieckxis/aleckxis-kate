@@ -45,9 +45,14 @@ const projects = [
 // `crop` locks the output to our 16:10 aspect ratio directly from the
 // service, and object-position:top in CSS keeps the visible crop
 // anchored to the top of the page (nav + hero).
+//
+// `cacheBust` changes once a day, so thum.io is forced to grab a fresh
+// screenshot instead of serving back a stale cached one from before a
+// redesign — without hammering the service on every single page load.
 function thumbnailUrl(url, width = 1200) {
   const height = Math.round(width / 1.6); // 16:10, matches .project-thumb
-  return `https://image.thum.io/get/width/${width}/crop/${height}/noanimate/wait/5/${url}`;
+  const cacheBust = Math.floor(Date.now() / (1000 * 60 * 60 * 24)); // daily
+  return `https://image.thum.io/get/width/${width}/crop/${height}/noanimate/wait/5/${url}?cb=${cacheBust}`;
 }
 
 function ProjectThumbnail({ project }) {
