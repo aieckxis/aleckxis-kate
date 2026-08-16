@@ -1023,14 +1023,36 @@ footer {
 
 /* ---------- Safety net: the drawer must NEVER be visible on
    desktop widths, no matter what state the component thinks it's
-   in. This is what was causing the menu to overlap the hero photo. ---------- */
+   in. This is what was causing the menu to overlap the hero photo.
+   display:none (not just transform) fully removes it from layout,
+   and we also cover common alternate class names in case the
+   actual component isn't named .mobile-drawer. ---------- */
 @media (min-width: 901px) {
-    .mobile-drawer {
-        transform: translateX(100%) !important;
+
+    .mobile-drawer,
+    .nav-drawer,
+    .drawer,
+    .side-nav,
+    .sidenav,
+    .mobile-nav,
+    .mobile-menu,
+    .sidebar-nav,
+    .hamburger,
+    .hamburger-btn,
+    nav .mobile-drawer,
+    header .mobile-drawer {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
         pointer-events: none !important;
+        transform: translateX(100%) !important;
     }
 
-    .nav-backdrop {
+    .nav-backdrop,
+    .drawer-backdrop,
+    .overlay,
+    .menu-backdrop {
+        display: none !important;
         opacity: 0 !important;
         pointer-events: none !important;
     }
