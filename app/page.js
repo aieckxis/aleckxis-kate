@@ -36,13 +36,14 @@ const projects = [
   },
 ];
 
-// Free, key-less live-screenshot service. Requesting an explicit height
-// that matches our thumbnail's aspect ratio (16:10) makes mshots capture
-// exactly the "above the fold" view a visitor sees when opening the link —
-// instead of a taller full-page shot that then gets cropped/zoomed by CSS.
+// Free, key-less live-screenshot service. A wide viewport width (like a
+// real desktop browser window) captures the full "above the fold" layout
+// at a natural scale — a narrower width makes hero text look zoomed-in.
+// The height matches our thumbnail's aspect ratio (16:10) so mshots
+// captures exactly the visible viewport, not a cropped/scaled full page.
 // First load per URL can take a few seconds while it renders; subsequent
 // loads are served from cache.
-function thumbnailUrl(url, width = 1200) {
+function thumbnailUrl(url, width = 1600) {
   const height = Math.round(width / 1.6); // 16:10, matches .project-thumb
   return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=${width}&h=${height}`;
 }
