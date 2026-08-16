@@ -1,11 +1,24 @@
-/* root variables for a high-end neon dark system */
+/* ============================================================
+   ROOT TOKENS — deep-space navy base + blue → pink glow gradient
+   (restyle of the original pink/dark theme — same class names,
+   same markup, only the visual language changed)
+   ============================================================ */
 :root {
-    --bg: #030303;
-    --card: #0a0a0a;
-    --pink: #ff4d94;
-    --pink-glow: rgba(255, 77, 148, 0.25);
-    --white: #ffffff;
-    --gray: #a0a0a0;
+    --bg: #05040f;
+    --bg-deep: #030209;
+    --card: rgba(255, 255, 255, 0.035);
+    --card-hover: rgba(255, 255, 255, 0.06);
+    --border: rgba(255, 255, 255, 0.09);
+
+    --blue: #4d7dff;
+    --blue-glow: rgba(77, 125, 255, 0.35);
+    --pink: #ff4fa3;
+    --pink-glow: rgba(255, 79, 163, 0.35);
+
+    --gradient: linear-gradient(135deg, var(--blue) 0%, var(--pink) 100%);
+
+    --white: #f5f5fb;
+    --gray: #9d9db3;
 }
 
 /* global resets for consistent structural logic */
@@ -21,46 +34,91 @@ body {
     color: var(--white);
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* ambient blue/pink glow blobs behind the whole page, like the
+   reference art's soft rim-light at the top and the circular pink
+   halo near the bottom */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+}
+
+body::before {
+    top: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1200px;
+    height: 600px;
+    background: radial-gradient(circle, var(--blue-glow), transparent 70%);
+    opacity: 0.6;
+}
+
+body::after {
+    bottom: -400px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1400px;
+    height: 900px;
+    background: radial-gradient(circle, var(--pink-glow), transparent 70%);
+    opacity: 0.55;
 }
 
 span {
-    color: var(--pink);
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-/* professional sticky navigation bar */
+/* professional sticky navigation bar — floating glass pill */
 nav {
     display: flex;
     justify-content: space-between;
-    padding: 18px 10%;
     align-items: center;
+    padding: 14px 28px;
     position: fixed;
-    width: 100%;
-    top: 0;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92%, 1100px);
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(15, 12, 28, 0.55);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     letter-spacing: -1px;
+    color: var(--white);
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--white);
-    margin-left: 30px;
-    font-size: 0.85rem;
+    margin-left: 28px;
+    font-size: 0.82rem;
     transition: 0.3s;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+    opacity: 0.85;
 }
 
 .nav-links a:hover {
     color: var(--pink);
+    opacity: 1;
 }
 
 /* hero section — compact, no longer forces a full viewport height */
@@ -68,9 +126,10 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 120px 10% 60px;
+    padding: 150px 10% 60px;
     min-height: auto;
     gap: 40px;
+    position: relative;
 }
 
 .hello-tag {
@@ -96,14 +155,15 @@ h1 {
     line-height: 1.6;
 }
 
-/* hero badge pill */
+/* hero badge pill — glass */
 .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 7px 16px;
-    border: 1px solid rgba(255, 77, 148, 0.35);
-    background: rgba(255, 77, 148, 0.08);
+    border: 1px solid rgba(255, 79, 163, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 700;
@@ -117,7 +177,7 @@ h1 {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--pink);
+    background: var(--gradient);
     box-shadow: 0 0 8px var(--pink);
 }
 
@@ -153,7 +213,8 @@ h1 {
     padding: 8px 16px;
     border-radius: 12px;
     background: var(--card);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--white);
@@ -164,9 +225,11 @@ h1 {
     border-color: var(--pink);
     color: var(--pink);
     transform: translateY(-3px);
+    background: var(--card-hover);
 }
 
-/* hero portrait area — enlarged per request */
+/* hero portrait area — rounded "fantasy card" frame instead of a
+   plain circle, echoing the reference art's floating tile look */
 .hero-visual {
     position: relative;
     display: flex;
@@ -176,16 +239,16 @@ h1 {
 
 .portrait-wrap {
     position: relative;
-    width: 440px;
-    height: 440px;
+    width: 400px;
+    height: 460px;
     z-index: 1;
 }
 
 .portrait-glow {
     position: absolute;
-    inset: -50px;
+    inset: -60px;
     background: radial-gradient(circle, var(--pink-glow), transparent 70%);
-    filter: blur(45px);
+    filter: blur(50px);
     z-index: 0;
 }
 
@@ -194,10 +257,12 @@ h1 {
     z-index: 1;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
+    border-radius: 36px;
     overflow: hidden;
-    border: 2px solid rgba(255, 77, 148, 0.5);
-    box-shadow: 0 0 60px var(--pink-glow);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 70px var(--pink-glow), 0 20px 60px rgba(0, 0, 0, 0.5);
+    background: var(--card);
+    backdrop-filter: blur(6px);
 }
 
 .portrait-blob img {
@@ -207,7 +272,7 @@ h1 {
     display: block;
 }
 
-/* interactive elements and buttons */
+/* interactive elements and buttons — gradient pill */
 .hero-btns {
     display: flex;
     flex-wrap: wrap;
@@ -216,7 +281,7 @@ h1 {
 }
 
 .btn-primary {
-    background: var(--pink);
+    background: var(--gradient);
     color: white;
     padding: 14px 32px;
     border-radius: 50px;
@@ -229,8 +294,10 @@ h1 {
 }
 
 .btn-outline {
-    border: 1.5px solid var(--pink);
-    color: var(--pink);
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    color: var(--white);
     padding: 14px 32px;
     border-radius: 50px;
     text-decoration: none;
@@ -241,17 +308,19 @@ h1 {
 
 .btn-primary:hover {
     transform: translateY(-4px);
-    box-shadow: 0 0 35px var(--pink);
+    box-shadow: 0 0 40px var(--pink-glow), 0 0 40px var(--blue-glow);
 }
 
 .btn-outline:hover {
-    background: rgba(255, 77, 148, 0.1);
+    border-color: var(--pink);
+    color: var(--pink);
     transform: translateY(-4px);
 }
 
 /* generic section layout and expertise grid — tighter vertical rhythm */
 .section {
     padding: 70px 10%;
+    position: relative;
 }
 
 .about-grid {
@@ -262,9 +331,17 @@ h1 {
 
 .about-card {
     background: var(--card);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     padding: 32px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+}
+
+.about-card:hover {
+    border-color: rgba(255, 79, 163, 0.35);
+    background: var(--card-hover);
 }
 
 .about-card.full-width {
@@ -272,9 +349,13 @@ h1 {
 }
 
 .about-card h3 {
-    color: var(--pink);
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     margin-bottom: 16px;
     font-size: 1.2rem;
+    font-weight: 700;
 }
 
 .about-card li {
@@ -283,7 +364,8 @@ h1 {
     list-style: none;
 }
 
-/* professional timeline for internship experience */
+/* professional timeline for internship experience — glass cards with
+   a gradient left rail instead of a flat pink one */
 .timeline {
     display: flex;
     flex-direction: column;
@@ -294,14 +376,23 @@ h1 {
 
 .t-card {
     background: var(--card);
+    backdrop-filter: blur(18px);
     padding: 28px;
-    border-radius: 20px;
-    border-left: 5px solid #222;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    border-left: 4px solid rgba(255, 255, 255, 0.12);
+    transition: 0.3s;
+}
+
+.t-card:hover {
+    background: var(--card-hover);
 }
 
 .t-card.highlight {
-    border-left-color: var(--pink);
-    background: #0e0e0e;
+    border-left: 4px solid transparent;
+    border-image: var(--gradient) 1;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 40px rgba(77, 125, 255, 0.12);
 }
 
 .t-card h3 {
@@ -320,7 +411,7 @@ h1 {
     margin-bottom: 6px;
 }
 
-/* detailed portfolio cards and grid architecture */
+/* detailed portfolio cards and grid architecture — frosted glass tiles */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -330,8 +421,10 @@ h1 {
 
 .project-card {
     background: var(--card);
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 28px;
+    border: 1px solid var(--border);
     transition: 0.4s;
     position: relative;
     overflow: hidden;
@@ -346,12 +439,15 @@ h1 {
 
 .project-card:hover {
     transform: translateY(-10px);
-    border-color: var(--pink);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 79, 163, 0.4);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 40px var(--blue-glow);
 }
 
 .tag {
-    color: var(--pink);
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     font-size: 0.75rem;
     font-weight: 700;
     margin-bottom: 12px;
@@ -388,8 +484,8 @@ h1 {
     width: 100%;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    background: #050505;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--border);
 }
 
 .project-thumb-wrap {
@@ -424,7 +520,7 @@ h1 {
     align-items: center;
     justify-content: center;
     gap: 14px;
-    background: linear-gradient(120deg, #0a0a0a 0%, #111111 40%, #0a0a0a 80%);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.06) 40%, rgba(255, 255, 255, 0.02) 80%);
     background-size: 200% 100%;
     animation: thumb-shimmer 2.2s ease-in-out infinite;
     color: var(--gray);
@@ -438,7 +534,7 @@ h1 {
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: var(--pink);
+    background: var(--gradient);
     box-shadow: 0 0 18px var(--pink-glow);
     animation: thumb-pulse 1.4s ease-in-out infinite;
 }
@@ -472,7 +568,8 @@ h1 {
     bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(3, 3, 3, 0.85);
+    background: rgba(5, 4, 15, 0.85);
+    backdrop-filter: blur(10px);
     border: 1.5px solid var(--pink);
     color: var(--white);
     font-size: 0.75rem;
@@ -485,7 +582,8 @@ h1 {
 }
 
 .thumb-retry-btn:hover {
-    background: var(--pink);
+    background: var(--gradient);
+    border-color: transparent;
 }
 
 .project-card:hover .project-thumb-wrap img {
@@ -500,7 +598,7 @@ h1 {
     justify-content: center;
     opacity: 0;
     transition: opacity 0.35s ease;
-    background: linear-gradient(180deg, rgba(3, 3, 3, 0) 0%, rgba(3, 3, 3, 0.75) 100%);
+    background: linear-gradient(180deg, rgba(5, 4, 15, 0) 0%, rgba(5, 4, 15, 0.75) 100%);
 }
 
 .project-card:hover .project-thumb-overlay {
@@ -508,19 +606,21 @@ h1 {
 }
 
 .project-thumb-overlay span {
+    -webkit-text-fill-color: var(--white);
     color: var(--white);
+    background: rgba(5, 4, 15, 0.55);
+    backdrop-filter: blur(10px);
     font-weight: 700;
     font-size: 0.95rem;
     letter-spacing: 0.5px;
     padding: 12px 26px;
     border: 1.5px solid var(--pink);
     border-radius: 50px;
-    background: rgba(3, 3, 3, 0.55);
 }
 
 /* contact and footer credits */
 .dark-bg {
-    background: #080808;
+    background: rgba(255, 255, 255, 0.015);
 }
 
 .section-title {
@@ -546,14 +646,22 @@ h1 {
 
 .contact-form input,
 .contact-form textarea {
-    background: #0c0c0c;
-    border: 1px solid #222;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
     padding: 16px 18px;
     border-radius: 16px;
     color: white;
     outline: none;
     width: 100%;
     font-family: inherit;
+    transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--pink);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 footer {
@@ -561,16 +669,16 @@ footer {
     text-align: center;
     color: var(--gray);
     font-size: 0.85rem;
-    border-top: 1px solid #111;
+    border-top: 1px solid var(--border);
 }
 
 /* ============================================================
    HIGH-CONTRAST "HIRE ME / LET'S WORK TOGETHER" CTA BANNER
-   Restyled to match the site's pink-neon dark theme (was indigo/gray).
+   Frosted glass panel with gradient border glow.
    ============================================================ */
 .cta-banner-section {
     padding: 60px 10%;
-    background-color: var(--bg);
+    background-color: transparent;
 }
 
 .cta-banner-grid {
@@ -578,10 +686,12 @@ footer {
     grid-template-columns: 1.2fr 1.2fr 1fr;
     gap: 32px;
     background: var(--card);
-    border: 1px solid rgba(255, 77, 148, 0.25);
-    border-radius: 24px;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border: 1px solid rgba(255, 79, 163, 0.2);
+    border-radius: 28px;
     padding: 44px;
-    box-shadow: 0 0 60px rgba(255, 77, 148, 0.08);
+    box-shadow: 0 0 80px rgba(77, 125, 255, 0.1), 0 0 80px rgba(255, 79, 163, 0.08);
 }
 
 .cta-col {
@@ -642,9 +752,11 @@ footer {
 }
 
 .check-icon {
-    color: var(--pink);
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     font-weight: bold;
-    text-shadow: 0 0 10px var(--pink-glow);
 }
 
 /* Right Column: Direct Info */
@@ -684,19 +796,20 @@ footer {
 }
 
 .social-badge {
-    background: #0c0c0c;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
     color: var(--white);
     padding: 8px 16px;
     border-radius: 10px;
     font-size: 0.85rem;
     font-weight: 600;
     text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
     transition: 0.3s;
 }
 
 .social-badge:hover {
-    background: rgba(255, 77, 148, 0.1);
+    background: rgba(255, 255, 255, 0.06);
     border-color: var(--pink);
     color: var(--pink);
     transform: translateY(-2px);
@@ -722,7 +835,7 @@ footer {
     .hero {
         flex-direction: column;
         text-align: center;
-        padding-top: 130px;
+        padding-top: 150px;
     }
 
     .hero-content {
@@ -742,7 +855,7 @@ footer {
     }
 
     .portrait-wrap {
-        width: 340px;
+        width: 300px;
         height: 340px;
     }
 
@@ -810,8 +923,8 @@ footer {
 .nav-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
+    background: rgba(3, 2, 9, 0.7);
+    backdrop-filter: blur(6px);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.35s ease;
@@ -823,15 +936,17 @@ footer {
     pointer-events: auto;
 }
 
-/* ---------- Mobile drawer panel ---------- */
+/* ---------- Mobile drawer panel — glass ---------- */
 .mobile-drawer {
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
     width: min(75vw, 340px);
-    background: var(--card);
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 8, 20, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-left: 1px solid var(--border);
     box-shadow: -20px 0 60px rgba(0, 0, 0, 0.6);
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -872,7 +987,9 @@ footer {
    ============================================================ */
 @media (max-width: 900px) {
     nav {
-        padding: 16px 6%;
+        padding: 12px 20px;
+        top: 12px;
+        width: 94%;
     }
 
     .nav-links {
@@ -889,12 +1006,12 @@ footer {
    ============================================================ */
 @media (max-width: 768px) {
     .hero {
-        padding: 110px 6% 50px;
+        padding: 130px 6% 50px;
         min-height: auto;
     }
 
     .portrait-wrap {
-        width: 250px;
+        width: 220px;
         height: 250px;
     }
 
@@ -949,7 +1066,7 @@ footer {
 
     .project-thumb-overlay {
         opacity: 1;
-        background: linear-gradient(180deg, rgba(3, 3, 3, 0) 40%, rgba(3, 3, 3, 0.85) 100%);
+        background: linear-gradient(180deg, rgba(5, 4, 15, 0) 40%, rgba(5, 4, 15, 0.85) 100%);
         align-items: flex-end;
         padding-bottom: 14px;
     }
@@ -957,6 +1074,7 @@ footer {
     .project-thumb-overlay span {
         border: none;
         background: none;
+        backdrop-filter: none;
         padding: 0;
         font-size: 0.8rem;
     }
@@ -971,7 +1089,7 @@ footer {
    ============================================================ */
 @media (max-width: 480px) {
     nav {
-        padding: 14px 5%;
+        padding: 10px 16px;
     }
 
     .logo {
@@ -988,8 +1106,8 @@ footer {
     }
 
     .portrait-wrap {
-        width: 190px;
-        height: 190px;
+        width: 170px;
+        height: 200px;
     }
 
     .btn-primary,
