@@ -17,7 +17,7 @@ const projects = [
     tag: 'TypeScript • IoT Dashboard',
     title: 'GrowUp Thesis Dashboard',
     description:
-      'Front-end lead for a smart farming system. engineered the interface for real-time environment monitoring.',
+      'Served as Frontend & Edge IoT Developer for GrowUp, a self-sustaining IoT vertical aquaponics system. Engineered the React.js/Flutter interface for real-time environment monitoring and crop-health tracking.',
     url: 'https://grow-up-front-end.vercel.app/dashboard',
     linkLabel: 'Live Dashboard →',
   },
