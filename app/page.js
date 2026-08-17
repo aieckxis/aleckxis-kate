@@ -275,6 +275,65 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="research" className="section">
+        <div className="container">
+          <h2 className="section-title">
+            Research <span>Experience</span>
+          </h2>
+          <div className="about-grid">
+            <div className="about-card full-width">
+              <h3>
+                GrowUp: A Self-Sustaining Vertical Farming Solution for
+                Year-Round Crop Production
+              </h3>
+              <p>
+                <strong>Role:</strong> Frontend &amp; Edge IoT Developer
+              </p>
+              <p>
+                <strong>Research Problem:</strong> Rapid urbanization in the
+                Philippines has driven escalating food insecurity and severe
+                spatial constraints, while existing smart-farming systems
+                offer limited integration between environmental monitoring
+                and AI-based crop assessment.
+              </p>
+              <p>
+                <strong>Methodology:</strong> A developmental, experimental,
+                and descriptive-evaluative design was used to build and
+                validate an IoT-enabled vertical aquaponics prototype —
+                combining a Raspberry Pi 5 sensor array with a YOLO-based
+                crop health model — evaluated over a 45-day period, with user
+                acceptance measured through the UTAUT framework.
+              </p>
+              <p>
+                <strong>Technologies Used:</strong> Raspberry Pi 5, Python,
+                YOLOv8n / YOLO26n, React.js, Flutter, Firebase, and a
+                BME280 / BH1750 / DS18B20 / PH4502C / MQ-137 sensor array.
+              </p>
+              <p>
+                <strong>Findings:</strong> The system maintained optimal
+                environmental stability (mean temperature 28.30°C, pH 6.74)
+                and produced kale with a mean height of 16.62 cm — roughly
+                sixfold the conventional soil-based baseline. Under UTAUT
+                evaluation, Performance Expectancy scored highest at 3.87,
+                reflecting strong user-recognized value.
+              </p>
+              <p>
+                <strong>Conclusion:</strong> GrowUp demonstrates the
+                empirical viability of converging vertical aquaponics, edge
+                computing, and lightweight AI to overcome urban farming
+                constraints, with high user readiness for residential
+                deployment.
+              </p>
+              <p>
+                <strong>Published Paper:</strong> Journal Publication Format
+                submitted to the PUP Research Management and Intellectual
+                Property Office (RMIPO).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="projects" className="portfolio">
         <h2 className="section-title">
           Detailed <span>Portfolio</span>
