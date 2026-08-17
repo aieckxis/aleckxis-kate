@@ -280,15 +280,24 @@ export default function Home() {
           <h2 className="section-title">
             Research <span>Experience</span>
           </h2>
-          <div className="about-grid">
-            <div className="about-card full-width">
-              <h3>
-                GrowUp: A Self-Sustaining Vertical Farming Solution for
-                Year-Round Crop Production
-              </h3>
-              <p>
-                <strong>Role:</strong> Frontend &amp; Edge IoT Developer
-              </p>
+
+          <div className="research-header">
+            <h3 className="research-title">
+              GrowUp: A Self-Sustaining Vertical Farming Solution for
+              Year-Round Crop Production
+            </h3>
+            <span className="research-role-tag">
+              Frontend &amp; Edge IoT Developer
+            </span>
+          </div>
+
+          <div className="research-grid">
+            {/* Card 1 — The Core Problem & Objective */}
+            <div className="research-card">
+              <span className="research-card-icon" aria-hidden="true">
+                🎯
+              </span>
+              <h4>The Core Problem &amp; Objective</h4>
               <p>
                 <strong>Research Problem:</strong> Rapid urbanization in the
                 Philippines has driven escalating food insecurity and severe
@@ -299,24 +308,104 @@ export default function Home() {
               <p>
                 <strong>Methodology:</strong> A developmental, experimental,
                 and descriptive-evaluative design was used to build and
-                validate an IoT-enabled vertical aquaponics prototype —
-                combining a Raspberry Pi 5 sensor array with a YOLO-based
-                crop health model — evaluated over a 45-day period, with user
-                acceptance measured through the UTAUT framework.
+                validate an IoT-enabled vertical aquaponics prototype,
+                evaluated over a 45-day period with user acceptance measured
+                through the UTAUT framework.
               </p>
+            </div>
+
+            {/* Card 2 — My Engineering Role */}
+            <div className="research-card">
+              <span className="research-card-icon" aria-hidden="true">
+                🛠️
+              </span>
+              <h4>My Engineering Role</h4>
               <p>
-                <strong>Technologies Used:</strong> Raspberry Pi 5, Python,
-                YOLOv8n / YOLO26n, React.js, Flutter, Firebase, and a
-                BME280 / BH1750 / DS18B20 / PH4502C / MQ-137 sensor array.
+                Served as <strong>Frontend &amp; Edge IoT Developer</strong>,
+                engineering the React.js/Flutter interface for real-time
+                environment monitoring and crop-health tracking.
               </p>
+              <ul className="exp-list">
+                <li>
+                  Built the dashboard UI for live sensor data visualization
+                  and alerts.
+                </li>
+                <li>
+                  Integrated the Raspberry Pi 5 sensor array and YOLO-based
+                  crop-health model with the frontend via Firebase.
+                </li>
+                <li>
+                  Supported data collection and validation across the 45-day
+                  evaluation period.
+                </li>
+              </ul>
+            </div>
+
+            {/* Card 3 — Hardware, Model & Tech Stack Badges */}
+            <div className="research-card">
+              <span className="research-card-icon" aria-hidden="true">
+                ⚙️
+              </span>
+              <h4>Hardware, Model &amp; Tech Stack</h4>
               <p>
-                <strong>Findings:</strong> The system maintained optimal
-                environmental stability (mean temperature 28.30°C, pH 6.74)
-                and produced kale with a mean height of 16.62 cm — roughly
-                sixfold the conventional soil-based baseline. Under UTAUT
-                evaluation, Performance Expectancy scored highest at 3.87,
-                reflecting strong user-recognized value.
+                Combining a Raspberry Pi 5 sensor array with a YOLO-based
+                crop health model at the edge.
               </p>
+              <div className="research-badges">
+                <span className="tech-badge">Raspberry Pi 5</span>
+                <span className="tech-badge">YOLOv8n / YOLO26n</span>
+                <span className="tech-badge">Python</span>
+                <span className="tech-badge">React.js</span>
+                <span className="tech-badge">Flutter</span>
+                <span className="tech-badge">Firebase</span>
+                <span className="tech-badge">BME280</span>
+                <span className="tech-badge">BH1750</span>
+                <span className="tech-badge">DS18B20</span>
+                <span className="tech-badge">PH4502C</span>
+                <span className="tech-badge">MQ-137</span>
+              </div>
+            </div>
+
+            {/* Card 4 — Key Quantitative Findings & Impact */}
+            <div className="research-card research-card-findings">
+              <span className="research-card-icon" aria-hidden="true">
+                📊
+              </span>
+              <h4>Key Quantitative Findings &amp; Impact</h4>
+              <div className="stat-chips">
+                <div className="stat-chip">
+                  <span className="stat-chip-value">6x</span>
+                  <span className="stat-chip-label">
+                    Growth vs. soil baseline
+                    <em>16.62 cm mean kale height</em>
+                  </span>
+                </div>
+                <div className="stat-chip">
+                  <span className="stat-chip-value">28.30°C / 6.74</span>
+                  <span className="stat-chip-label">
+                    Optimal environment stability
+                    <em>mean temperature / pH</em>
+                  </span>
+                </div>
+                <div className="stat-chip">
+                  <span className="stat-chip-value">3.87</span>
+                  <span className="stat-chip-label">
+                    UTAUT Performance Expectancy
+                    <em>highest-scoring construct</em>
+                  </span>
+                </div>
+              </div>
+              <p>
+                Under UTAUT evaluation, Performance Expectancy scored
+                highest, reflecting strong user-recognized value and high
+                readiness for residential deployment.
+              </p>
+            </div>
+          </div>
+
+          <div className="about-grid research-summary-grid">
+            <div className="about-card full-width">
+              <h3>Conclusion &amp; Publication</h3>
               <p>
                 <strong>Conclusion:</strong> GrowUp demonstrates the
                 empirical viability of converging vertical aquaponics, edge
@@ -500,4 +589,4 @@ export default function Home() {
       </footer>
     </>
   );
-} 
+}

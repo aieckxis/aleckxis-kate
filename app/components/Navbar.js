@@ -1,88 +1,1404 @@
-'use client';
+:root {
+  --bg: #05040f;
+  --bg - deep: #030209;
+  --card: rgba(255, 255, 255, 0.035);
+  --card - hover: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.09);
 
-import { useEffect, useState } from 'react';
+  --blue: #4d7dff;
+  --blue - glow: rgba(77, 125, 255, 0.35);
+  --pink: #ff4fa3;
+  --pink - glow: rgba(255, 79, 163, 0.35);
 
-const NAV_LINKS = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#education', label: 'Education' },
-  { href: '#research', label: 'Research' },
-  { href: '#projects', label: 'Portfolio' },
-  { href: '#contact', label: 'Contact' },
-];
+  --gradient: linear - gradient(135deg, var(--blue) 0 %, var(--pink) 100 %);
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  --white: #f5f5fb;
+  --gray: #9d9db3;
+}
 
-  // Lock background scroll while the drawer is open
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
+/* global resets for consistent structural logic */
+* {
+  margin: 0;
+  padding: 0;
+  box- sizing: border - box;
+scroll - behavior: smooth;
+}
 
-  // Close the drawer automatically if the viewport grows back to desktop size
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) setIsOpen(false);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+body {
+  color: var(--white);
+  font - family: 'Poppins', sans - serif;
+  overflow - x: hidden;
+  position: relative;
+  /* faint circuit-style grid, kept very low-opacity so it reads as
+     texture rather than a pattern that fights with the content */
+  background:
+  linear - gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 52px 52px,
+    linear - gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 52px 52px,
+        var(--bg);
+}
 
-  const closeMenu = () => setIsOpen(false);
+/* ambient blue/pink glow blobs behind the whole page, like the
+   reference art's soft rim-light at the top and the circular pink
+   halo near the bottom */
+body:: before,
+  body::after {
+  content: "";
+  position: fixed;
+  z - index: -1;
+  border - radius: 50 %;
+  filter: blur(120px);
+  pointer - events: none;
+}
 
-  return (
-    <nav>
-      <div className="logo">
-        Aleckxis<span>Kate</span>
-      </div>
+body::before {
+  top: -300px;
+  left: 50 %;
+  transform: translateX(-50 %);
+  width: 1200px;
+  height: 600px;
+  background: radial - gradient(circle, var(--blue - glow), transparent 70 %);
+  opacity: 0.4;
+}
 
-      {/* Desktop links */}
-      <div className="nav-links">
-        {NAV_LINKS.map((link) => (
-          <a key={link.href} href={link.href}>
-            {link.label}
-          </a>
-        ))}
-      </div>
+body::after {
+  bottom: -400px;
+  left: 50 %;
+  transform: translateX(-50 %);
+  width: 1400px;
+  height: 900px;
+  background: radial - gradient(circle, var(--pink - glow), transparent 70 %);
+  opacity: 0.35;
+}
 
-      {/* Hamburger button (mobile only, shown via CSS) */}
-      <button
-        type="button"
-        className={`hamburger ${isOpen ? 'is-active' : ''}`}
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        aria-expanded={isOpen}
-        aria-controls="mobile-drawer"
-        onClick={() => setIsOpen((prev) => !prev)}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
+span {
+  background: var(--gradient);
+  -webkit - background - clip: text;
+  background - clip: text;
+  color: transparent;
+}
 
-      {/* Backdrop */}
-      <div
-        className={`nav-backdrop ${isOpen ? 'is-visible' : ''}`}
-        onClick={closeMenu}
-        aria-hidden="true"
-      />
+/* professional sticky navigation bar — floating glass pill */
+nav {
+  display: flex;
+  justify - content: space - between;
+  align - items: center;
+  padding: 14px 28px;
+  position: fixed;
+  top: 18px;
+  left: 50 %;
+  transform: translateX(-50 %);
+  width: min(92 %, 1100px);
+  z - index: 1000;
+  background: rgba(15, 12, 28, 0.55);
+  backdrop - filter: blur(24px);
+  -webkit - backdrop - filter: blur(24px);
+  border: 1px solid var(--border);
+  border - radius: 999px;
+  box - shadow: 0 8px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
 
-      {/* Mobile drawer */}
-      <div
-        id="mobile-drawer"
-        className={`mobile-drawer ${isOpen ? 'is-open' : ''}`}
-      >
-        <div className="mobile-drawer-links">
-          {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href} onClick={closeMenu}>
-              {link.label}
-            </a>
-          ))}
-        </div>
-      </div>
-    </nav>
-  );
+.logo {
+  font - size: 1.4rem;
+  font - weight: 700;
+  letter - spacing: -1px;
+  color: var(--white);
+}
+
+.nav - links a {
+  text - decoration: none;
+  color: var(--white);
+  margin - left: 28px;
+  font - size: 0.82rem;
+  transition: 0.3s;
+  font - weight: 600;
+  text - transform: uppercase;
+  letter - spacing: 1px;
+  opacity: 0.85;
+}
+
+.nav - links a:hover {
+  color: var(--pink);
+  opacity: 1;
+}
+
+/* hero section — grid so the portrait centers inside its own half
+   instead of sticking to the far edge of the viewport */
+.hero {
+  display: grid;
+  grid - template - columns: 1.15fr 0.85fr;
+  align - items: center;
+  padding: 150px 8 % 60px;
+  min - height: auto;
+  gap: 40px;
+  position: relative;
+}
+
+.hello - tag {
+  color: var(--pink);
+  letter - spacing: 5px;
+  font - size: 0.9rem;
+  margin - bottom: 14px;
+  text - transform: uppercase;
+}
+
+h1 {
+  font - size: 4rem;
+  font - weight: 700;
+  line - height: 1.1;
+  margin - bottom: 16px;
+}
+
+.description {
+  color: var(--gray);
+  max - width: 580px;
+  font - size: 1.05rem;
+  margin - bottom: 26px;
+  line - height: 1.6;
+}
+
+/* hero badge pill — glass */
+.hero - badge {
+  display: inline - flex;
+  align - items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border: 1px solid rgba(255, 79, 163, 0.3);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop - filter: blur(12px);
+  border - radius: 50px;
+  font - size: 0.75rem;
+  font - weight: 700;
+  letter - spacing: 1.5px;
+  text - transform: uppercase;
+  color: var(--pink);
+  margin - bottom: 16px;
+  font - family: ui - monospace, 'SF Mono', 'Courier New', monospace;
+}
+
+.hero - badge - dot {
+  width: 6px;
+  height: 6px;
+  border - radius: 50 %;
+  background: var(--gradient);
+  box - shadow: 0 0 8px var(--pink);
+}
+
+.hero - subtitle {
+  font - size: 1.5rem;
+  font - weight: 500;
+  color: var(--gray);
+  margin - bottom: 14px;
+}
+
+/* technologies strip */
+.tech - stack {
+  margin - top: 30px;
+}
+
+.tech - stack - label {
+  display: block;
+  font - size: 0.75rem;
+  font - weight: 600;
+  text - transform: uppercase;
+  letter - spacing: 2px;
+  color: var(--gray);
+  margin - bottom: 12px;
+  font - family: ui - monospace, 'SF Mono', 'Courier New', monospace;
+}
+
+.tech - stack - icons {
+  display: flex;
+  flex - wrap: wrap;
+  gap: 10px;
+}
+
+.tech - badge {
+  padding: 8px 16px;
+  border - radius: 12px;
+  background: var(--card);
+  backdrop - filter: blur(12px);
+  border: 1px solid var(--border);
+  font - size: 0.8rem;
+  font - weight: 600;
+  color: var(--white);
+  transition: 0.3s;
+}
+
+.tech - badge:hover {
+  border - color: var(--pink);
+  color: var(--pink);
+  transform: translateY(-3px);
+  background: var(--card - hover);
+}
+
+/* hero portrait area — rounded "fantasy card" frame instead of a
+   plain circle, echoing the reference art's floating tile look */
+.hero - visual {
+  position: relative;
+  display: flex;
+  align - items: center;
+  justify - content: center;
+}
+
+.portrait - wrap {
+  position: relative;
+  width: 360px;
+  height: 420px;
+  z - index: 1;
+}
+
+/* HUD-style corner brackets — a quiet sci-fi accent instead of a
+   loud glow ring, so it reads futuristic without being harsh */
+.portrait - wrap:: before,
+.portrait - wrap::after {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  z - index: 2;
+  pointer - events: none;
+}
+
+.portrait - wrap::before {
+  top: -12px;
+  left: -12px;
+  border - top: 2px solid var(--blue);
+  border - left: 2px solid var(--blue);
+  border - radius: 8px 0 0 0;
+  filter: drop - shadow(0 0 6px var(--blue - glow));
+}
+
+.portrait - wrap::after {
+  bottom: -12px;
+  right: -12px;
+  border - bottom: 2px solid var(--pink);
+  border - right: 2px solid var(--pink);
+  border - radius: 0 0 8px 0;
+  filter: drop - shadow(0 0 6px var(--pink - glow));
+}
+
+.portrait - glow {
+  position: absolute;
+  inset: -60px;
+  background: radial - gradient(circle, var(--pink - glow), transparent 70 %);
+  filter: blur(50px);
+  z - index: 0;
+}
+
+.portrait - blob {
+  position: relative;
+  z - index: 1;
+  width: 100 %;
+  height: 100 %;
+  border - radius: 36px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box - shadow: 0 0 70px var(--pink - glow), 0 20px 60px rgba(0, 0, 0, 0.5);
+  background: var(--card);
+  backdrop - filter: blur(6px);
+}
+
+.portrait - blob img {
+  width: 100 %;
+  height: 100 %;
+  object - fit: cover;
+  display: block;
+}
+
+/* interactive elements and buttons — gradient pill */
+.hero - btns {
+  display: flex;
+  flex - wrap: wrap;
+  gap: 14px;
+  align - items: center;
+}
+
+.btn - primary {
+  background: var(--gradient);
+  color: white;
+  padding: 14px 32px;
+  border - radius: 50px;
+  text - decoration: none;
+  font - weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline - block;
+}
+
+.btn - outline {
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop - filter: blur(12px);
+  color: var(--white);
+  padding: 14px 32px;
+  border - radius: 50px;
+  text - decoration: none;
+  font - weight: 600;
+  transition: 0.3s;
+  display: inline - block;
+}
+
+.btn - primary:hover {
+  transform: translateY(-4px);
+  box - shadow: 0 0 40px var(--pink - glow), 0 0 40px var(--blue - glow);
+}
+
+.btn - outline:hover {
+  border - color: var(--pink);
+  color: var(--pink);
+  transform: translateY(-4px);
+}
+
+/* generic section layout and expertise grid — tighter vertical rhythm */
+.section {
+  padding: 70px 10 %;
+  position: relative;
+}
+
+.about - grid {
+  display: grid;
+  grid - template - columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.about - card {
+  background: var(--card);
+  backdrop - filter: blur(18px);
+  -webkit - backdrop - filter: blur(18px);
+  padding: 32px;
+  border - radius: 24px;
+  border: 1px solid var(--border);
+  transition: 0.3s;
+}
+
+.about - card:hover {
+  border - color: rgba(255, 79, 163, 0.35);
+  background: var(--card - hover);
+}
+
+.about - card.full - width {
+  grid - column: span 2;
+}
+
+.about - card h3 {
+  background: var(--gradient);
+  -webkit - background - clip: text;
+  background - clip: text;
+  color: transparent;
+  margin - bottom: 16px;
+  font - size: 1.2rem;
+  font - weight: 700;
+}
+
+.about - card li {
+  margin - bottom: 8px;
+  color: var(--gray);
+  list - style: none;
+}
+
+/* ============================================================
+   RESEARCH SECTION — modular card grid replacing the single
+   full-width text block. Header (title/role) sits above a 2x2
+   card grid, then a summary card for conclusion/publication.
+   ============================================================ */
+.research - header {
+  text - align: center;
+  max - width: 820px;
+  margin: 0 auto 32px;
+}
+
+.research - title {
+  font - size: 1.35rem;
+  font - weight: 700;
+  line - height: 1.4;
+  background: var(--gradient);
+  -webkit - background - clip: text;
+  background - clip: text;
+  color: transparent;
+  margin - bottom: 12px;
+}
+
+.research - role - tag {
+  display: inline - block;
+  padding: 6px 18px;
+  border - radius: 50px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--gray);
+  font - size: 0.8rem;
+  font - weight: 600;
+  letter - spacing: 0.5px;
+}
+
+.research - grid {
+  display: grid;
+  grid - template - columns: repeat(2, 1fr);
+  gap: 18px;
+  margin - bottom: 18px;
+}
+
+.research - card {
+  background: var(--card);
+  backdrop - filter: blur(18px);
+  -webkit - backdrop - filter: blur(18px);
+  padding: 30px;
+  border - radius: 24px;
+  border: 1px solid var(--border);
+  transition: 0.3s;
+  position: relative;
+}
+
+.research - card:hover {
+  border - color: rgba(255, 79, 163, 0.35);
+  background: var(--card - hover);
+}
+
+.research - card - icon {
+  display: inline - flex;
+  align - items: center;
+  justify - content: center;
+  width: 42px;
+  height: 42px;
+  border - radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  font - size: 1.1rem;
+  margin - bottom: 14px;
+}
+
+.research - card h4 {
+  background: var(--gradient);
+  -webkit - background - clip: text;
+  background - clip: text;
+  color: transparent;
+  margin - bottom: 12px;
+  font - size: 1.1rem;
+  font - weight: 700;
+}
+
+.research - card p {
+  color: var(--gray);
+  font - size: 0.92rem;
+  line - height: 1.65;
+  margin - bottom: 10px;
+}
+
+.research - card p: last - child {
+  margin - bottom: 0;
+}
+
+.research - card.exp - list {
+  margin - top: 4px;
+}
+
+/* Hardware / tech stack badge wrap inside the research card —
+   reuses .tech-badge but tighter spacing for a denser card */
+.research - badges {
+  display: flex;
+  flex - wrap: wrap;
+  gap: 8px;
+  margin - top: 6px;
+}
+
+.research - badges.tech - badge {
+  padding: 6px 12px;
+  font - size: 0.75rem;
+}
+
+/* Key Quantitative Findings card spans full width so the three
+   stat chips have room to breathe */
+.research - card - findings {
+  grid - column: span 2;
+}
+
+.stat - chips {
+  display: grid;
+  grid - template - columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 6px 0 16px;
+}
+
+.stat - chip {
+  display: flex;
+  flex - direction: column;
+  align - items: center;
+  text - align: center;
+  gap: 6px;
+  padding: 20px 14px;
+  border - radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  transition: 0.3s;
+}
+
+.stat - chip:hover {
+  border - color: rgba(77, 125, 255, 0.4);
+  box - shadow: 0 0 30px rgba(77, 125, 255, 0.12);
+  transform: translateY(-3px);
+}
+
+.stat - chip - value {
+  font - size: 1.6rem;
+  font - weight: 800;
+  background: var(--gradient);
+  -webkit - background - clip: text;
+  background - clip: text;
+  color: transparent;
+  line - height: 1.1;
+}
+
+.stat - chip - label {
+  display: flex;
+  flex - direction: column;
+  gap: 2px;
+  font - size: 0.78rem;
+  font - weight: 600;
+  color: var(--white);
+}
+
+.stat - chip - label em {
+  font - style: normal;
+  font - size: 0.7rem;
+  font - weight: 400;
+  color: var(--gray);
+}
+
+.research - summary - grid {
+  margin - top: 0;
+}
+
+/* professional timeline for internship experience — glass cards with
+   a gradient left rail instead of a flat pink one */
+.timeline {
+  display: flex;
+  flex - direction: column;
+  gap: 18px;
+  max - width: 1000px;
+  margin: 0 auto;
+}
+
+.t - card {
+  background: var(--card);
+  backdrop - filter: blur(18px);
+  padding: 28px;
+  border - radius: 24px;
+  border: 1px solid var(--border);
+  border - left: 4px solid rgba(255, 255, 255, 0.12);
+  transition: 0.3s;
+}
+
+.t - card:hover {
+  background: var(--card - hover);
+}
+
+.t - card.highlight {
+  border - left: 4px solid transparent;
+  border - image: var(--gradient) 1;
+  background: rgba(255, 255, 255, 0.05);
+  box - shadow: 0 0 40px rgba(77, 125, 255, 0.12);
+}
+
+.t - card h3 {
+  margin: 8px 0;
+  font - size: 1.3rem;
+}
+
+.exp - list {
+  margin - top: 10px;
+  padding - left: 20px;
+  color: var(--gray);
+  font - size: 0.92rem;
+}
+
+.exp - list li {
+  margin - bottom: 6px;
+}
+
+/* detailed portfolio cards and grid architecture — frosted glass tiles */
+.portfolio - grid {
+  display: grid;
+  grid - template - columns: repeat(auto - fit, minmax(300px, 1fr));
+  gap: 18px;
+  width: 100 %;
+}
+
+.project - card {
+  background: var(--card);
+  backdrop - filter: blur(18px);
+  -webkit - backdrop - filter: blur(18px);
+  border - radius: 28px;
+  border: 1px solid var(--border);
+  transition: 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card - content {
+  padding: 30px;
+  height: 100 %;
+  display: flex;
+  flex - direction: column;
+}
+
+.project - card:hover {
+  transform: translateY(-10px);
+  border - color: rgba(255, 79, 163, 0.4);
+  box - shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 40px var(--blue - glow);
+}
+
+.tag {
+  background: var(--gradient);
+  -webkit - background - clip: text;
+  background - clip: text;
+  color: transparent;
+  font - size: 0.75rem;
+  font - weight: 700;
+  margin - bottom: 12px;
+  display: block;
+  letter - spacing: 1px;
+  font - family: ui - monospace, 'SF Mono', 'Courier New', monospace;
+}
+
+.project - card h3 {
+  margin - bottom: 10px;
+  font - size: 1.3rem;
+}
+
+.project - card p {
+  color: var(--gray);
+  font - size: 0.95rem;
+  margin - bottom: 18px;
+  line - height: 1.55;
+  flex - grow: 1;
+}
+
+.card - link {
+  color: var(--pink);
+  text - decoration: none;
+  font - weight: 600;
+  font - size: 0.9rem;
+  border - bottom: 1.5px solid var(--pink);
+  display: inline - block;
+}
+
+/* live website preview thumbnail sitting on top of each project card */
+.project - thumb {
+  display: block;
+  position: relative;
+  width: 100 %;
+  aspect - ratio: 16 / 10;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border - bottom: 1px solid var(--border);
+}
+
+.project - thumb - wrap {
+  position: relative;
+  width: 100 %;
+  height: 100 %;
+}
+
+.project - thumb - wrap img {
+  width: 100 %;
+  height: 100 %;
+  object - fit: cover;
+  object - position: top center;
+  display: block;
+  transition: filter 0.5s ease, opacity 0.4s ease;
+}
+
+.project - thumb - wrap img.is - loading {
+  opacity: 0;
+}
+
+.project - thumb - wrap img.is - ready {
+  opacity: 1;
+}
+
+/* skeleton shown while the screenshot service is still generating the real screenshot */
+.thumb - skeleton {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex - direction: column;
+  align - items: center;
+  justify - content: center;
+  gap: 14px;
+  background: linear - gradient(120deg, rgba(255, 255, 255, 0.02) 0 %, rgba(255, 255, 255, 0.06) 40 %, rgba(255, 255, 255, 0.02) 80 %);
+  background - size: 200 % 100 %;
+  animation: thumb - shimmer 2.2s ease -in -out infinite;
+  color: var(--gray);
+  font - size: 0.85rem;
+  letter - spacing: 0.3px;
+  text - align: center;
+  padding: 0 20px;
+}
+
+.thumb - skeleton - dot {
+  width: 14px;
+  height: 14px;
+  border - radius: 50 %;
+  background: var(--gradient);
+  box - shadow: 0 0 18px var(--pink - glow);
+  animation: thumb - pulse 1.4s ease -in -out infinite;
+}
+
+@keyframes thumb - shimmer {
+  0 % {
+    background- position: 0 % 50 %;
+}
+
+100 % {
+  background- position: -200 % 50 %;
+    }
+}
+
+@keyframes thumb - pulse {
+
+  0 %,
+    100 % {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+  50 % {
+    transform: scale(1.3);
+    opacity: 0.6;
+  }
+}
+
+.thumb - retry - btn {
+  position: absolute;
+  bottom: 16px;
+  left: 50 %;
+  transform: translateX(-50 %);
+  background: rgba(5, 4, 15, 0.85);
+  backdrop - filter: blur(10px);
+  border: 1.5px solid var(--pink);
+  color: var(--white);
+  font - size: 0.75rem;
+  font - weight: 600;
+  padding: 8px 18px;
+  border - radius: 50px;
+  cursor: pointer;
+  z - index: 2;
+  transition: 0.3s;
+}
+
+.thumb - retry - btn:hover {
+  background: var(--gradient);
+  border - color: transparent;
+}
+
+.project - card: hover.project - thumb - wrap img {
+  filter: brightness(0.55);
+}
+
+.project - thumb - overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align - items: center;
+  justify - content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: linear - gradient(180deg, rgba(5, 4, 15, 0) 0 %, rgba(5, 4, 15, 0.75) 100 %);
+}
+
+.project - card: hover.project - thumb - overlay {
+  opacity: 1;
+}
+
+.project - thumb - overlay span {
+  -webkit - text - fill - color: var(--white);
+  color: var(--white);
+  background: rgba(5, 4, 15, 0.55);
+  backdrop - filter: blur(10px);
+  font - weight: 700;
+  font - size: 0.95rem;
+  letter - spacing: 0.5px;
+  padding: 12px 26px;
+  border: 1.5px solid var(--pink);
+  border - radius: 50px;
+}
+
+/* contact and footer credits */
+.dark - bg {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.section - title {
+  font - size: 2.4rem;
+  text - align: center;
+  margin - bottom: 40px;
+  font - weight: 700;
+}
+
+.contact - form {
+  width: 100 %;
+  max - width: 750px;
+  margin: 0 auto;
+  display: flex;
+  flex - direction: column;
+  gap: 16px;
+}
+
+.form - group {
+  display: flex;
+  gap: 16px;
+}
+
+.contact - form input,
+.contact - form textarea {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop - filter: blur(12px);
+  border: 1px solid var(--border);
+  padding: 16px 18px;
+  border - radius: 16px;
+  color: white;
+  outline: none;
+  width: 100 %;
+  font - family: inherit;
+  transition: 0.3s;
+}
+
+.contact - form input: focus,
+.contact - form textarea:focus {
+  border - color: var(--pink);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+footer {
+  padding: 36px;
+  text - align: center;
+  color: var(--gray);
+  font - size: 0.85rem;
+  border - top: 1px solid var(--border);
+}
+
+/* ============================================================
+   HIGH-CONTRAST "HIRE ME / LET'S WORK TOGETHER" CTA BANNER
+   Frosted glass panel with gradient border glow.
+   ============================================================ */
+.cta - banner - section {
+  padding: 60px 10 %;
+  background - color: transparent;
+}
+
+.cta - banner - grid {
+  display: grid;
+  grid - template - columns: 1.2fr 1.2fr 1fr;
+  gap: 32px;
+  background: var(--card);
+  backdrop - filter: blur(22px);
+  -webkit - backdrop - filter: blur(22px);
+  border: 1px solid rgba(255, 79, 163, 0.2);
+  border - radius: 28px;
+  padding: 44px;
+  box - shadow: 0 0 80px rgba(77, 125, 255, 0.1), 0 0 80px rgba(255, 79, 163, 0.08);
+}
+
+.cta - col {
+  display: flex;
+  flex - direction: column;
+  justify - content: flex - start;
+}
+
+/* Left Column */
+.cta - left.sub - tag {
+  color: var(--pink);
+  font - size: 0.78rem;
+  font - weight: 700;
+  letter - spacing: 2px;
+  margin - bottom: 10px;
+  text - transform: uppercase;
+}
+
+.cta - left h2 {
+  color: var(--white);
+  font - size: 1.9rem;
+  margin - bottom: 12px;
+  line - height: 1.2;
+}
+
+.cta - left p {
+  color: var(--gray);
+  font - size: 0.95rem;
+  line - height: 1.55;
+  margin - bottom: 24px;
+}
+
+/* Middle + Right column headings */
+.cta - mid h3,
+.cta - right h3 {
+  color: var(--white);
+  font - size: 1.15rem;
+  margin - bottom: 18px;
+}
+
+/* Middle Column: Checklist */
+.checklist {
+  list - style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex - direction: column;
+  gap: 13px;
+}
+
+.checklist li {
+  display: flex;
+  align - items: flex - start;
+  gap: 10px;
+  color: var(--gray);
+  font - size: 0.92rem;
+  line - height: 1.45;
+}
+
+.check - icon {
+  background: var(--gradient);
+  -webkit - background - clip: text;
+  background - clip: text;
+  color: transparent;
+  font - weight: bold;
+}
+
+/* Right Column: Direct Info */
+.contact - details {
+  display: flex;
+  flex - direction: column;
+  gap: 12px;
+  margin - bottom: 26px;
+}
+
+.direct - link {
+  color: var(--gray);
+  text - decoration: none;
+  font - size: 0.92rem;
+  display: flex;
+  align - items: center;
+  gap: 8px;
+  transition: color 0.2s ease;
+}
+
+.direct - link:hover {
+  color: var(--pink);
+}
+
+.social - label {
+  display: block;
+  color: var(--gray);
+  font - size: 0.75rem;
+  letter - spacing: 1.5px;
+  text - transform: uppercase;
+  margin - bottom: 10px;
+}
+
+.social - badges {
+  display: flex;
+  gap: 10px;
+}
+
+.social - badge {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop - filter: blur(10px);
+  color: var(--white);
+  padding: 8px 16px;
+  border - radius: 10px;
+  font - size: 0.85rem;
+  font - weight: 600;
+  text - decoration: none;
+  border: 1px solid var(--border);
+  transition: 0.3s;
+}
+
+.social - badge:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border - color: var(--pink);
+  color: var(--pink);
+  transform: translateY(-2px);
+}
+
+/* Responsive view for tablets and mobile */
+@media(max - width: 900px) {
+    .cta - banner - grid {
+    grid - template - columns: 1fr;
+    padding: 28px;
+    gap: 30px;
+  }
+}
+
+@media(max - width: 768px) {
+    .cta - banner - section {
+    padding: 50px 6 %;
+  }
+}
+
+/* media queries for tablet and mobile responsiveness */
+@media(max - width: 1200px) {
+    .hero {
+    grid - template - columns: 1fr;
+    text - align: center;
+    padding - top: 150px;
+  }
+
+    .hero - content {
+    margin - bottom: 40px;
+  }
+
+    .hero - visual {
+    flex - direction: column;
+  }
+
+    .hero - btns {
+    justify - content: center;
+  }
+
+    .tech - stack - icons {
+    justify - content: center;
+  }
+
+    .portrait - wrap {
+    width: 300px;
+    height: 340px;
+  }
+
+    .about - grid,
+    .portfolio - grid,
+    .research - grid {
+    grid - template - columns: 1fr;
+  }
+
+    .about - card.full - width {
+    grid - column: span 1;
+  }
+
+    .research - card - findings {
+    grid - column: span 1;
+  }
+
+    .stat - chips {
+    grid - template - columns: 1fr;
+  }
+
+    .form - group {
+    flex - direction: column;
+  }
+
+    h1 {
+    font - size: 3rem;
+  }
+}
+
+/* ============================================================
+   MOBILE HAMBURGER DRAWER + RESPONSIVE FIXES
+   ============================================================ */
+
+/* ---------- Hamburger button (hidden by default on desktop) ---------- */
+.hamburger {
+  display: none;
+  flex - direction: column;
+  justify - content: center;
+  gap: 6px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z - index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  width: 100 %;
+  height: 2px;
+  background: var(--white);
+  border - radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+}
+
+.hamburger.is - active span: nth - child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background: var(--pink);
+}
+
+.hamburger.is - active span: nth - child(2) {
+  opacity: 0;
+}
+
+.hamburger.is - active span: nth - child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+  background: var(--pink);
+}
+
+/* ---------- Backdrop behind the drawer ---------- */
+.nav - backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 2, 9, 0.7);
+  backdrop - filter: blur(6px);
+  opacity: 0;
+  pointer - events: none;
+  transition: opacity 0.35s ease;
+  z - index: 1000;
+}
+
+.nav - backdrop.is - visible {
+  opacity: 1;
+  pointer - events: auto;
+}
+
+/* ---------- Mobile drawer panel — glass ---------- */
+.mobile - drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(75vw, 340px);
+  background: rgba(10, 8, 20, 0.75);
+  backdrop - filter: blur(24px);
+  -webkit - backdrop - filter: blur(24px);
+  border - left: 1px solid var(--border);
+  box - shadow: -20px 0 60px rgba(0, 0, 0, 0.6);
+  transform: translateX(100 %);
+  transition: transform 0.4s cubic - bezier(0.16, 1, 0.3, 1);
+  z - index: 1050;
+  display: flex;
+  align - items: center;
+}
+
+.mobile - drawer.is - open {
+  transform: translateX(0);
+}
+
+.mobile - drawer - links {
+  display: flex;
+  flex - direction: column;
+  gap: 1.5rem;
+  padding: 32px;
+  width: 100 %;
+}
+
+.mobile - drawer - links a {
+  text - decoration: none;
+  color: var(--white);
+  font - size: 1.1rem;
+  font - weight: 600;
+  text - transform: uppercase;
+  letter - spacing: 1px;
+  transition: 0.3s;
+}
+
+.mobile - drawer - links a: hover,
+.mobile - drawer - links a: focus - visible {
+  color: var(--pink);
+}
+
+/* ---------- Safety net: the drawer must NEVER be visible on
+   desktop widths, no matter what state the component thinks it's
+   in. This is what was causing the menu to overlap the hero photo.
+   display:none (not just transform) fully removes it from layout,
+   and we also cover common alternate class names in case the
+   actual component isn't named .mobile-drawer. ---------- */
+@media(min - width: 901px) {
+
+    .mobile - drawer,
+    .nav - drawer,
+    .drawer,
+    .side - nav,
+    .sidenav,
+    .mobile - nav,
+    .mobile - menu,
+    .sidebar - nav,
+    .hamburger,
+    .hamburger - btn,
+    nav.mobile - drawer,
+    header.mobile - drawer {
+    display: none!important;
+    visibility: hidden!important;
+    opacity: 0!important;
+    pointer - events: none!important;
+    transform: translateX(100 %)!important;
+  }
+
+    .nav - backdrop,
+    .drawer - backdrop,
+    .overlay,
+    .menu - backdrop {
+    display: none!important;
+    opacity: 0!important;
+    pointer - events: none!important;
+  }
+}
+
+/* ============================================================
+   BREAKPOINT: where nav-links no longer fit (<= 900px)
+   ============================================================ */
+@media(max - width: 900px) {
+    nav {
+    padding: 12px 20px;
+    top: 12px;
+    width: 94 %;
+  }
+
+    .nav - links {
+    display: none;
+  }
+
+    .hamburger {
+    display: flex;
+  }
+}
+
+/* ============================================================
+   BREAKPOINT: tablet content tweaks (<= 768px)
+   ============================================================ */
+@media(max - width: 768px) {
+    .hero {
+    padding: 130px 6 % 50px;
+    min - height: auto;
+  }
+
+    .portrait - wrap {
+    width: 220px;
+    height: 250px;
+  }
+
+    h1 {
+    font - size: 2.4rem;
+  }
+
+    .hero - subtitle {
+    font - size: 1.15rem;
+  }
+
+    .description {
+    font - size: 0.95rem;
+    margin - bottom: 20px;
+  }
+
+    .hero - btns {
+    display: flex;
+    flex - wrap: wrap;
+    gap: 12px;
+    justify - content: center;
+  }
+
+    .tech - stack {
+    margin - top: 26px;
+  }
+
+    .section {
+    padding: 50px 6 %;
+  }
+
+    .section - title {
+    font - size: 1.8rem;
+    margin - bottom: 30px;
+  }
+
+    .about - card {
+    padding: 22px;
+  }
+
+    .research - card {
+    padding: 22px;
+  }
+
+    .research - title {
+    font - size: 1.15rem;
+  }
+
+    .t - card {
+    padding: 22px;
+  }
+
+    .t - card h3 {
+    font - size: 1.1rem;
+  }
+
+    .card - content {
+    padding: 24px;
+  }
+
+    .project - thumb - overlay {
+    opacity: 1;
+    background: linear - gradient(180deg, rgba(5, 4, 15, 0) 40 %, rgba(5, 4, 15, 0.85) 100 %);
+    align - items: flex - end;
+    padding - bottom: 14px;
+  }
+
+    .project - thumb - overlay span {
+    border: none;
+    background: none;
+    backdrop - filter: none;
+    padding: 0;
+    font - size: 0.8rem;
+  }
+
+    footer {
+    padding: 30px 20px;
+  }
+}
+
+/* ============================================================
+   BREAKPOINT: small phones (<= 480px)
+   ============================================================ */
+@media(max - width: 480px) {
+    nav {
+    padding: 10px 16px;
+  }
+
+    .logo {
+    font - size: 1.2rem;
+  }
+
+    h1 {
+    font - size: 1.9rem;
+  }
+
+    .hello - tag {
+    font - size: 0.72rem;
+    letter - spacing: 3px;
+  }
+
+    .portrait - wrap {
+    width: 170px;
+    height: 200px;
+  }
+
+    .btn - primary,
+    .btn - outline {
+    padding: 13px 28px;
+    width: 100 %;
+    text - align: center;
+  }
+
+    .hero - btns {
+    flex - direction: column;
+    width: 100 %;
+  }
+
+    .section - title {
+    font - size: 1.5rem;
+  }
+
+    .about - card {
+    padding: 18px;
+  }
+
+    .research - card {
+    padding: 18px;
+  }
+
+    .stat - chip - value {
+    font - size: 1.4rem;
+  }
+
+    .contact - form input,
+    .contact - form textarea {
+    padding: 14px;
+  }
 }
