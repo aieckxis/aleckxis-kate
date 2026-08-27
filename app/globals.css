@@ -227,6 +227,16 @@ h1 {
     font-weight: 600;
     color: var(--white);
     transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.tech-badge-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    flex-shrink: 0;
 }
 
 .tech-badge:hover {
