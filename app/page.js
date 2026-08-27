@@ -163,6 +163,9 @@ export default function Home() {
               <span className="tech-badge">React</span>
               <span className="tech-badge">Next.js</span>
               <span className="tech-badge">Tailwind</span>
+              <span className="tech-badge">Supabase</span>
+              <span className="tech-badge">Git/GitHub</span>
+              <span className="tech-badge">Vercel</span>
             </div>
           </div>
         </div>
@@ -170,7 +173,7 @@ export default function Home() {
           <div className="portrait-wrap">
             <div className="portrait-glow" aria-hidden="true" />
             <div className="portrait-blob">
-              <img src="/profile1.jpeg" alt="Aleckxis Kate Professional Portrait" />
+              <img src="/profile1.jpg" alt="Aleckxis Kate Professional Portrait" />
             </div>
           </div>
         </div>
