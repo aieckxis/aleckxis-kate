@@ -120,7 +120,7 @@ export default function Home() {
         <div className="hero-content">
           <span className="hero-badge">
             <span className="hero-badge-dot" />
-            Front-End Engineer
+            Front-End Developer
           </span>
           <h1>
             Hi, I&apos;m <span>Aleckxis Kate</span>
@@ -134,6 +134,13 @@ export default function Home() {
           <div className="hero-btns">
             <a href="#projects" className="btn-primary">
               View My Work →
+            </a>
+            <a
+              href="/cv_akvbernabe.pdf"
+              download
+              className="btn-outline"
+            >
+              Download CV ↓
             </a>
             <a
               href="https://www.linkedin.com/in/aleckxis/"
@@ -156,16 +163,46 @@ export default function Home() {
           <div className="tech-stack">
             <span className="tech-stack-label">Technologies I Work With</span>
             <div className="tech-stack-icons">
-              <span className="tech-badge">HTML5</span>
-              <span className="tech-badge">CSS3</span>
-              <span className="tech-badge">JavaScript</span>
-              <span className="tech-badge">TypeScript</span>
-              <span className="tech-badge">React</span>
-              <span className="tech-badge">Next.js</span>
-              <span className="tech-badge">Tailwind</span>
-              <span className="tech-badge">Supabase</span>
-              <span className="tech-badge">Git/GitHub</span>
-              <span className="tech-badge">Vercel</span>
+              <span className="tech-badge">
+                <img src="https://cdn.simpleicons.org/html5/E34F26" alt="" className="tech-badge-icon" />
+                HTML5
+              </span>
+              <span className="tech-badge">
+                <img src="https://cdn.simpleicons.org/css3/1572B6" alt="" className="tech-badge-icon" />
+                CSS3
+              </span>
+              <span className="tech-badge">
+                <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="" className="tech-badge-icon" />
+                JavaScript
+              </span>
+              <span className="tech-badge">
+                <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="" className="tech-badge-icon" />
+                TypeScript
+              </span>
+              <span className="tech-badge">
+                <img src="https://cdn.simpleicons.org/react/61DAFB" alt="" className="tech-badge-icon" />
+                React
+              </span>
+              <span className="tech-badge">
+                <img src="https://cdn.simpleicons.org/nextdotjs/FFFFFF" alt="" className="tech-badge-icon" />
+                Next.js
+              </span>
+              <span className="tech-badge">
+                <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="" className="tech-badge-icon" />
+                Tailwind
+              </span>
+              <span className="tech-badge">
+                <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="" className="tech-badge-icon" />
+                Supabase
+              </span>
+              <span className="tech-badge">
+                <img src="https://cdn.simpleicons.org/git/F05032" alt="" className="tech-badge-icon" />
+                Git/GitHub
+              </span>
+              <span className="tech-badge">
+                <img src="https://cdn.simpleicons.org/vercel/FFFFFF" alt="" className="tech-badge-icon" />
+                Vercel
+              </span>
             </div>
           </div>
         </div>
@@ -173,7 +210,7 @@ export default function Home() {
           <div className="portrait-wrap">
             <div className="portrait-glow" aria-hidden="true" />
             <div className="portrait-blob">
-              <img src="/profile.jpg" alt="Aleckxis Kate Professional Portrait" />
+              <img src="/profile1.jpeg" alt="Aleckxis Kate Professional Portrait" />
             </div>
           </div>
         </div>
@@ -205,7 +242,7 @@ export default function Home() {
               <h3>Career Objective</h3>
               <p>
                 To become a skilled and socially responsible Computer
-                Engineer specializing in Software Development, dedicated to
+                Engineer specializing in System Development, dedicated to
                 creating innovative, reliable, and user-centered systems that
                 contribute positively to society.
               </p>
