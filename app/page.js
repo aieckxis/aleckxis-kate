@@ -173,7 +173,7 @@ export default function Home() {
           <div className="portrait-wrap">
             <div className="portrait-glow" aria-hidden="true" />
             <div className="portrait-blob">
-              <img src="/profile1.jpg" alt="Aleckxis Kate Professional Portrait" />
+              <img src="/profile.jpg" alt="Aleckxis Kate Professional Portrait" />
             </div>
           </div>
         </div>
